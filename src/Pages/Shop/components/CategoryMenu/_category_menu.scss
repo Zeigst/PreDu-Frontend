@@ -1,0 +1,117 @@
+.category-menu {
+  background-color: rgba(black, 0.4);
+  height: calc(100vh - 80px + 0.390625vw);
+  width: 25vw;
+  position: fixed;
+  border-radius: 10px;
+  left: -10px;
+  top: calc(80px + 0.390625vw);
+  margin-top: 20px;
+  transition: all 0.5s ease;
+  padding-left: 20px;
+  padding-right: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  &.sticky {
+    margin-top: 0px;
+    transition: all 0.5s ease;
+  }
+
+  h3 {
+    color:rgb(224, 165, 0);
+    width: 100%;
+    border-bottom: 2px solid rgb(224, 165, 0);
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: calc(20px + 0.390625vw);
+    font-family: 'Noto Sans';
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(black, 0.4);
+    border-radius: 50px;
+    border: 1px solid silver;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    .search-input {
+      width: 100%;
+      height: 90%;
+      border: none;
+      outline: none;
+      border-radius: 50px;
+      padding: 0 20px 0 20px;
+      background: transparent;
+      color: white;
+    }
+
+    button {
+      outline: none;
+      border-radius: 50%;
+      min-width: 50px;
+      min-height: 50px;
+      border: 2px solid white;
+      background: transparent;
+      position: relative;
+      left: 1px;
+      cursor: pointer;
+      transition: all 0.5s ease;
+
+      .icon {
+        width: 30px;
+        height: 30px;
+        fill: white;
+        transition: all 0.5s ease;
+      }
+
+      &:hover {
+        background-color: rgba(white, 0.3);
+        border: 2px solid rgb(0, 217, 0);
+        transition: all 0.5s ease;
+        
+        .icon {
+          width: 35px;
+          height: 35px;
+          fill: rgb(0, 217, 0);
+          transition: all 0.5s ease;
+        }
+      }
+    }
+  }
+
+  .category-list {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+
+    .category-dropdown {
+      color: white;
+      display: flex;
+      flex-direction: column;
+
+      .select{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid white;
+        padding: 5px 10px 5px 10px;
+        border-radius: 5px;
+      }
+      .icon {
+        width: 30px;
+        height: 30px;
+        fill: white;
+      }
+    }
+    
+  }
+
+  .category-list::-webkit-scrollbar {
+    display: none;
+  }
+}

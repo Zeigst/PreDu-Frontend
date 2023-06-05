@@ -1,0 +1,265 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: all 0.5s ease;
+  z-index: 10;
+  min-height: calc(80px + 0.390625vw);
+
+  &.sticky {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(black, 0.4);
+    transition: all 0.5s ease;
+    &:hover {
+      background-color: rgba(black, 0.8);
+      transition: all 0.5s ease;
+    }
+  }
+
+  .logo {
+    font-family: 'Cherry Bomb One';
+    color: white;
+    font-size: max(25px, calc(25px + 0.390625vw));
+    margin-left: calc(30px + 0.390625vw);
+    margin-right: calc(30px + 0.390625vw);
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.5s ease;
+
+    &:hover {
+      color: rgb(224, 165, 0);
+      transition: all 0.5s ease;
+    }
+  }
+
+  .container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+
+    .account-button-responsive {
+      display: none;
+    }
+
+    .navigation {
+      width: 50%;
+
+      .menu-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+  
+        .menu-item {
+          list-style: none;
+          text-decoration: none;
+          font-family: 'Ariel', sans-serif;
+          font-size: max(10, calc(10px + 0.390625vw));
+          padding: 10px;
+          color: white;
+          cursor: pointer;
+          transition: color 0.5s ease;
+
+          &:hover {
+            color: rgb(224, 165, 0);
+            border-bottom: 2px solid rgb(224, 165, 0);
+            transition: color 0.5s ease;
+          }
+        } 
+      }
+    }
+  
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: calc(20px + 0.390625vw);
+      margin-left: calc(30px + 0.390625vw);
+      margin-right: calc(30px + 0.390625vw);
+  
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        cursor: pointer;
+  
+        &.cart-button {
+          padding: 5px 10px 5px 10px;
+          border-radius: 5px;
+          gap: 10px;
+          color: rgb(0, 217, 0);
+          background-color: rgba(white, 0.2);
+          border: 2px solid rgba(white, 0.4);
+          transition: all 0.5s ease;
+  
+          .icon {
+            height: 40px;
+            width: 40px;
+            fill: rgb(0, 217, 0);
+            transition: all 0.5s ease;
+          }
+
+          &:hover {
+            background-color: rgba(green, 0.8);
+            color: white;
+
+            .icon {
+              fill: white;
+              transition: all 0.5s ease;
+            }
+          }
+        }
+  
+        &.account-button {
+          border: none;
+          outline: none;
+          border-radius: 50%;
+          background: none;
+
+          .icon {
+            fill: white;
+            transition: all 0.5s ease;
+            height: 60px;
+            width: 60px;
+          }
+
+          &:hover {
+            .icon {
+              fill: rgb(224, 165, 0);
+              transition: all 0.5s ease;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .menu-button {
+    display: none;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .header {
+    .container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      flex-direction: column;
+      justify-content: space-evenly;
+      background-color: rgba(black, 0.8);
+      height: 100vh;
+      padding-top: 50px;
+      transform: translateY(-100%);
+
+      .account-button-responsive {
+        display: initial;
+        border: none;
+        border: none;
+        outline: none;
+        border-radius: 50%;
+        background: none;
+        width: 100%;
+        padding: 40px;
+        border-bottom: 3px solid rgb(224, 165, 0);
+        cursor: pointer;
+
+        .icon {
+          fill: white;
+          transition: all 0.5s ease;
+          height: 100px;
+          width: 100px;
+        }
+
+        &:hover {
+          .icon {
+            fill: rgb(224, 165, 0);
+            transition: all 0.5s ease;
+          }
+        }
+      }
+
+      .navigation {
+        .menu-list {
+          flex-direction: column;
+        }
+      }
+
+      .buttons {
+        .account-button {
+          display: none;
+        }
+        button {
+          &.cart-button {
+            background-color: rgba(green, 0.8);
+            padding: 5px calc(30px + 3.390625vw) 5px calc(30px + 3.390625vw);
+            color: white;
+
+            .icon {
+              fill: white;
+            }
+          }
+        }
+      }
+
+      &.open {
+        transform: translateY(0);
+        transition: transform 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+      }
+    }
+
+    .menu-button {
+      display: grid;
+      place-items: center;
+      position: relative;
+      margin-left: calc(30px + 0.390625vw);
+      margin-right: calc(30px + 0.390625vw);
+      background: none;
+      border: 2px solid white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+
+      .menu-icon {
+        position: absolute;
+        top: calc(50% - calc(40px + 0.390625vw)/2);
+        left: calc(50% - calc(40px + 0.390625vw)/2);
+        fill: white;
+        width: calc(40px + 0.390625vw);
+        height: calc(40px + 0.390625vw);
+        transition: all 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+        transform: rotate(180deg);
+      }
+      .close-icon {
+        fill: white;
+        width: calc(40px + 0.390625vw);
+        height: calc(40px + 0.390625vw);
+        transition: all 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+        opacity: 0;
+      }
+
+      &:hover {
+        background-color: rgba(white, 0.3);
+      }
+
+      &.open {
+        transform: rotate(180deg);
+        .menu-icon {
+          opacity: 0;
+        }
+        .close-icon {
+          opacity: 1;
+        }
+      }
+    }
+  }
+} 
