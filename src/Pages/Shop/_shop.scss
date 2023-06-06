@@ -1,5 +1,7 @@
 @import './components/CategoryMenu/category_menu';
+@import './components/ShopList/shop_list';
 
 .shop {
   display: flex;
+  gap: 30px;
 }

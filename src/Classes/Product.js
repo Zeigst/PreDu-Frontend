@@ -9,17 +9,17 @@ export class Product {
    * @param {number} cost
    * @param {number} stock
    */
-  constructor(id, title, subtitle, desc, img_link, category, cost, stock) {
+  constructor(id, title, subtitle, desc, img_link, category, cost_per_unit, stock) {
     this.id = id;
     this.title = title;
     this.subtitle = subtitle;
     this.desc = desc;
     this.img_link = img_link;
     this.category = category;
-    this.cost = cost;
+    this.cost_per_unit = cost_per_unit;
     this.stock = stock;
     this.num_in_cart = 0;
-    this.total_cost = this.num_in_cart * this.cost;
+    this.total_cost = this.num_in_cart * this.cost_per_unit;
   }
 
   // ===== GET METHODS ===== //
@@ -68,8 +68,8 @@ export class Product {
   /**
    * @returns {number}
    */
-  getCost() {
-    return this.cost;
+  getCostPerUnit() {
+    return this.cost_per_unit;
   }
   
   /**
@@ -125,20 +125,20 @@ export class Product {
   /**
    * @param {string} category
    */
-  setKeyword(category) {
+  setCategory(category) {
     this.category = category;
   }
 
   /**
    * @param {number} cost
    */
-  setCost(cost) {
-    this.cost = cost;
+  setCostPerUnit(cost_per_unit) {
+    this.cost_per_unit = cost_per_unit;
   }
 
   setNumInCart(num_in_cart) {
     this.num_in_cart = num_in_cart
-    this.total_cost = this.num_in_cart * this.cost
+    this.total_cost = this.num_in_cart * this.cost_per_unit
   }
 
   // ===== OTHER METHODS ===== //
@@ -152,8 +152,8 @@ export class Product {
       subtitle: this.subtitle,
       desc: this.desc,
       img_link: this.img_link,
-      keyword: this.keyword,
-      cost: this.cost
+      category: this.category,
+      cost_per_unit: this.cost_per_unit
     }
   }
 }

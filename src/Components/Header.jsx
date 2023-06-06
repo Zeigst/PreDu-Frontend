@@ -1,14 +1,17 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { PreduContext } from '../PreduContext';
 import { ReactComponent as AccountCircleIcon } from '../Resources/Icons/account_circle.svg';
 import { ReactComponent as ShoppingCartIcon } from '../Resources/Icons/shopping_cart.svg';
 import { ReactComponent as MenuIcon } from '../Resources/Icons/menu.svg';
 import { ReactComponent as CloseIcon } from '../Resources/Icons/close.svg';
+import { ReactComponent as CategoryMenuIcon } from '../Resources/Icons/keyboard_double_arrow_down.svg';
 
 const Header = () => {
   let navigate = useNavigate();
   const [isOpen, setOpen] = useState("false");
+  const {categoryMenuStatus, changeCategoryMenuStatus} = useContext(PreduContext);
 
   function toggleMenu() {
     setOpen(!isOpen);
@@ -16,6 +19,10 @@ const Header = () => {
   
   function toShop() {
     window.scrollTo(0, 0);
+    setOpen(!isOpen)
+    if (categoryMenuStatus === true) {
+      changeCategoryMenuStatus()
+    }
     navigate('/Shop')
   }
 
@@ -67,10 +74,15 @@ const Header = () => {
         </div>
       </div>
 
-      <button className={`menu-button ${isOpen ? "" : "open"}`} onClick={toggleMenu} type="button">
-        <MenuIcon className="menu-icon"/>
-        <CloseIcon className="close-icon"/>
-      </button>
+      <div className="responsive-buttons">
+        <button className={`category-menu-button ${categoryMenuStatus ? "open" : ""}`} onClick={changeCategoryMenuStatus} type="button">
+          <CategoryMenuIcon className="icon"/>
+        </button>
+        <button className={`menu-button ${isOpen ? "" : "open"}`} onClick={toggleMenu} type="button">
+          <MenuIcon className="menu-icon"/>
+          <CloseIcon className="close-icon"/>
+        </button>
+      </div>
     </header>
   )
 }

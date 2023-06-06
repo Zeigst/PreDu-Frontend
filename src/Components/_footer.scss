@@ -1,0 +1,146 @@
+footer {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: rgb(179, 179, 179);
+
+  .upper_footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px 20px 20px;
+    background: rgb(49, 49, 49);
+
+    &_info {
+      display: flex;
+      flex-direction: column;
+      max-width: 35%;
+      
+      &_title {
+        font-family: 'Noto Sans';
+        font-weight: 600;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        color: white;
+        border-bottom: 1px solid white;
+      }
+
+      &_signature {
+        padding-top: 10px;
+        align-self: flex-end;
+        font-style: italic;
+      }
+    }
+
+    &_contacts {
+      display: flex;
+      flex-direction: column;
+
+      &_title {
+        font-family: 'Noto Sans';
+        font-weight: 600;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        color: white;
+        border-bottom: 1px solid white;
+      }
+
+      &_content {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        &_item {
+          display: flex;
+          font-size: 1.1rem;
+          gap: 5px;
+
+          &_title {
+            min-width: 80px;
+          }
+        }
+      }
+    }
+
+    &_media {
+      &_title {
+        font-family: 'Noto Sans';
+        font-weight: 600;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        color: white;
+        border-bottom: 1px solid white;
+      }
+
+      &_content {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        &_link {
+          text-decoration: none;
+          color: white;
+          
+          &_icon {
+            height: 60px;
+            width: 60px;
+          }
+        }
+      }
+    }
+  }
+
+  .lower_footer {
+    width: 100%;
+    padding: 20px;
+    background: rgb(37, 37, 37);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_copyrights {
+      display: flex;
+      color: rgb(159, 159, 159);
+    }
+
+    &_termcond {
+      display: flex;
+      &_separate {
+        height: 20px;
+        width: 1px;
+        background: rgb(159, 159, 159);
+      }
+
+      &_link {
+        text-decoration: none;
+        padding: 0 10px 0 10px;
+        color: rgb(159, 159, 159);
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  footer {
+    .upper_footer {
+      flex-direction: column;
+      gap: 10px;
+      &_info {
+        max-width: none;
+      }
+    }
+
+    .lower_footer {
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  footer .lower_footer {
+    font-size: 0.8rem;
+  }
+}

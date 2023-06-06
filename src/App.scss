@@ -58,9 +58,11 @@ body {
 
 main {
   padding-top: calc(80px + 0.390625vw);
+  min-height: 300vh;
 }
 
 
 @import './Components/header';
-@import './Pages/Shop/shop'
+@import './Components/footer';
+@import './Pages/Shop/shop';
 
