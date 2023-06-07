@@ -11,10 +11,21 @@ import { ReactComponent as CategoryMenuIcon } from '../Resources/Icons/keyboard_
 const Header = () => {
   let navigate = useNavigate();
   const [isOpen, setOpen] = useState("false");
-  const {categoryMenuStatus, changeCategoryMenuStatus} = useContext(PreduContext);
+  const {categoryMenuStatus, changeCategoryMenuStatus, numCartItems} = useContext(PreduContext);
 
   function toggleMenu() {
     setOpen(!isOpen);
+  }
+
+  function toHome() {
+    window.scrollTo(0, 0);
+    if (isOpen === false) {
+      setOpen(!isOpen)
+    }
+    if (categoryMenuStatus === true) {
+      changeCategoryMenuStatus()
+    }
+    navigate('/Home')
   }
   
   function toShop() {
@@ -37,7 +48,7 @@ const Header = () => {
     <header className="header">
       
       <div className="logo">
-        <h1>PreDu</h1>
+        <h1 onClick={toHome}>PreDu</h1>
       </div>
 
       <div className={`container ${isOpen ? "" : "open"}`}>
@@ -66,7 +77,7 @@ const Header = () => {
         <div className="buttons">
           <button className="cart-button" type="button">
             <ShoppingCartIcon className="icon"/>
-            <h2>Your Cart</h2>
+            <h2>Your Cart {numCartItems}</h2>
           </button>
           <button className="account-button" type="button">
             <AccountCircleIcon className="icon"/>

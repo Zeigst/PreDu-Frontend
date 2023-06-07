@@ -9,6 +9,8 @@ $template-colors: (
   "color2": rgb(71, 78, 104),
   "color3": rgb(80, 87, 122),
   "color4": rgb(107, 114, 142),
+  "orange": rgb(224, 165, 0),
+  "green": rgb(0, 217, 0),
 );
 
 $grid-breakpoints: (
@@ -48,7 +50,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   max-width: 100vw;
-  min-height: 200vh;
   background-image: url('./Resources/background-blur.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -58,7 +59,7 @@ body {
 
 main {
   padding-top: calc(80px + 0.390625vw);
-  min-height: 300vh;
+  min-height: 1vh;
 }
 
 

@@ -15,10 +15,10 @@
   &.sticky {
     padding-top: 0;
     padding-bottom: 0;
-    background-color: rgba(black, 0.4);
+    background-color: rgba(black, 0.5);
     transition: all 0.5s ease;
     &:hover {
-      background-color: rgba(black, 0.8);
+      background-color: rgba(black, 1);
       transition: all 0.5s ease;
     }
   }
