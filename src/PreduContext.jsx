@@ -10,6 +10,7 @@ export const PreduContextProvider = (props) => {
   const [cart, updateCart] = useState({})
   const [costTotal, updateCostTotal] = useState(0)
   const [numCartItems, updateNumCartItems] = useState(0)
+  const [productSearchQuery, updateProductSearchQuery] = useState("")
   
   async function getInitialShopData() {
     const result = product_database //await axios.get('https://dummyjson.com/products/1')
@@ -32,6 +33,25 @@ export const PreduContextProvider = (props) => {
     setCategoryMenuStatus(!categoryMenuStatus)
   }
 
+  const [selectCategory, updateSelectCategory] = useState("all")
+
+  const changeSelectCategory = (new_category) => {
+    window.scrollTo(0, 0);
+    if (categoryMenuStatus) {
+      changeCategoryMenuStatus();
+    }
+    updateProductSearchQuery("")
+    updateSelectCategory(new_category);
+  }
+
+  const searchProduct = (user_input) => {
+    window.scrollTo(0, 0);
+    if (categoryMenuStatus) {
+      changeCategoryMenuStatus();
+    }
+    updateProductSearchQuery(user_input);
+  }
+
 
   // ===== Cart ===== //
   const getCost = (id) => {
@@ -44,11 +64,13 @@ export const PreduContextProvider = (props) => {
   
   const setCartProductQuantity = (productID, quantity) => {
     // Update quantity in cart
-    const prevQuantity = shop[productID]
-    updateCart((prev) => ({...prev, [productID]: quantity}))
+    const prevQuantity = cart[productID]
+    const newCart = cart
+    newCart[productID] = quantity
+    
     // Update total cost
     const new_cost = costTotal - prevQuantity*getCost(productID) + quantity*getCost(productID)
-    updateCostTotal(new_cost)
+    
     // Change number of cart items alerts
     let count = 0
     for (let i in Object.values(cart)) {
@@ -57,9 +79,19 @@ export const PreduContextProvider = (props) => {
       }
     }
     updateNumCartItems(count)
+
+    // UPDATE STATE
+    updateCart(newCart)
+    updateCostTotal(new_cost)
+    updateNumCartItems(count)
   }
 
-  const contextValue = { shop, cart, numCartItems, categoryMenuStatus, changeCategoryMenuStatus, setCartProductQuantity}
+  const contextValue = { 
+    shop, cart, numCartItems, setCartProductQuantity,
+    categoryMenuStatus, changeCategoryMenuStatus, 
+    selectCategory, changeSelectCategory,
+    productSearchQuery, searchProduct,
+  }
   return (
     <PreduContext.Provider value={contextValue}>
       {props.children}

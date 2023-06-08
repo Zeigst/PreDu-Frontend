@@ -93,30 +93,77 @@
     }
   }
 
-  .add-cart-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  .buttons {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 50px;
-    outline: none;
-    border: none;
-    background-color: map-get($map: $template-colors, $key: "orange");
-    color: white;
-    cursor: pointer;
-    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    &:hover {
-      background-color: green;
+    button {
+      width: 50%;
+      height: 100%;
+      outline: none;
+      border: none;
+      cursor: pointer;
       transition: all 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: calc(12px + 0.390625vw);
+
+      .icon {
+        width: 25px;
+        height: 25px;
+      }
+
+      &.add-cart-button {
+        color: rgb(0, 217, 0);
+        background-color: rgba(black, 0.3);
+        transition: all 0.5s ease;
+        .icon {
+          fill: rgb(0, 217, 0);
+          transition: all 0.5s ease;
+        }
+
+        &:hover {
+          background-color: rgba(green, 0.8);
+          color: white;
+          border: 2px solid rgba(white, 0.4);
+          .icon {
+            fill: white;
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+
+      &.product-detail-button {
+        color: map-get($map: $template-colors, $key: "orange");
+        background-color: rgba(black, 0.2);
+        transition: all 0.5s ease;
+        .icon {
+          fill: map-get($map: $template-colors, $key: "orange");
+          transition: all 0.5s ease;
+        }
+
+        &:hover {
+          background-color: map-get($map: $template-colors, $key: "orange");
+          color: white;
+          border: 2px solid rgba(white, 0.4);
+          .icon {
+            fill: white;
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
     }
   }
-
-
 
 
 

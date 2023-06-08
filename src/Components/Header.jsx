@@ -17,6 +17,7 @@ const Header = () => {
     setOpen(!isOpen);
   }
 
+  // NAVIGATIONS
   function toHome() {
     window.scrollTo(0, 0);
     if (isOpen === false) {
@@ -37,12 +38,32 @@ const Header = () => {
     navigate('/Shop')
   }
 
+  function toCart() {
+    window.scrollTo(0, 0);
+    setOpen(!isOpen)
+    if (categoryMenuStatus === true) {
+      changeCategoryMenuStatus()
+    }
+    navigate('/Cart')
+  }
+
+  // STICKY SCROLL
   window.addEventListener("scroll", function() {
     var selection = document.querySelector('.header') !== null;
     if (selection) {
       document.querySelector("header").classList.toggle("sticky", window.scrollY > 0)
     }
   })
+
+  // CART ALERTS
+  function CartAlert(props) {
+    const numCartItems = props.numCartItems;
+    if (numCartItems > 0) {
+      return (
+        <h2 className="cart-alert">{numCartItems}</h2>
+      )
+    }
+  }
 
   return (
     <header className="header">
@@ -75,9 +96,10 @@ const Header = () => {
         </nav>
 
         <div className="buttons">
-          <button className="cart-button" type="button">
+          <button className="cart-button" type="button" onClick={toCart}>
             <ShoppingCartIcon className="icon"/>
-            <h2>Your Cart {numCartItems}</h2>
+            <h2>Your Cart</h2>
+            <CartAlert numCartItems={numCartItems}/>
           </button>
           <button className="account-button" type="button">
             <AccountCircleIcon className="icon"/>

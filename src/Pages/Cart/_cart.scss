@@ -1,0 +1,9 @@
+@import './components/CartList/cart_list';
+@import './components/CartProduct/cart_product';
+
+.cart {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 20px;
+}

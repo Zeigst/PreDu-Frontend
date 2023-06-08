@@ -7,8 +7,9 @@ import { ReactComponent as ArrowCircleRightIcon } from "../../../../Resources/Ic
 import { education_categories, entertainment_categories, office_categories } from "../../../../Data";
 
 const CategoryMenu = () => {
-  const { categoryMenuStatus } = useContext(PreduContext)
+  const { categoryMenuStatus, changeSelectCategory, searchProduct } = useContext(PreduContext)
   const [ menuState, setMenuState] = useState([false, false, false])
+  const [ userSearchInput, setUserSearchInput] = useState("")
 
   function handleMenuState(position) {
     if (menuState[position] === false) {
@@ -28,6 +29,10 @@ const CategoryMenu = () => {
     }
   }
 
+  const handleInputChange = event => {
+    setUserSearchInput(event.target.value)
+  }
+
   window.addEventListener("scroll", function() {
     var selection = document.querySelector('.category-menu') !== null;
     if (selection) {
@@ -35,23 +40,19 @@ const CategoryMenu = () => {
     }
   })
 
-  function openMenu() {
-    document.querySelector("shop").classList.toggle("open")
-  }
-
   return (
     <div className={`category-menu ${categoryMenuStatus ? "open" : ""}`}>
       
       <h3>Search</h3>
       <form className="search-box">
-        <input type="text" className="search-input" placeholder="What are you looking for?"></input>
-        <button type="submit">
+        <input type="text" className="search-input" placeholder="What are you looking for?" value={userSearchInput} onChange={handleInputChange}></input>
+        <button type="button" onClick={()=>{searchProduct(userSearchInput)}}>
           <SearchIcon className="icon"/>
         </button>
       </form>
       <h3>Shop Categories</h3>
       <div className="category-list">
-        <div className="category-all-button">
+        <div className="category-all-button" onClick={()=>{changeSelectCategory("all")}}>
           <h4>ALL</h4>
           <ArrowCircleRightIcon className="icon"/>
         </div>
@@ -63,7 +64,7 @@ const CategoryMenu = () => {
           </div>
           <ul className={`menu ${menuState[0] ? "open" : ""}`}>
             {education_categories.map((category) => (
-              <li className="category-item" key={category}>
+              <li className="category-item" key={category} onClick={()=>{changeSelectCategory(category)}}>
                 <h5>{category}</h5>
               </li>
             ))}
@@ -77,7 +78,7 @@ const CategoryMenu = () => {
           </div>
           <ul className={`menu ${menuState[1] ? "open" : ""}`}>
             {entertainment_categories.map((category) => (
-              <li className="category-item" key={category}>
+              <li className="category-item" key={category} onClick={()=>{changeSelectCategory(category)}}>
                 <h5>{category}</h5>
               </li>
             ))}
@@ -91,7 +92,7 @@ const CategoryMenu = () => {
           </div>
           <ul className={`menu ${menuState[2] ? "open" : ""}`}>
             {office_categories.map((category) => (
-              <li className="category-item" key={category}>
+              <li className="category-item" key={category} onClick={()=>{changeSelectCategory(category)}}>
                 <h5>{category}</h5>
               </li>
             ))}
