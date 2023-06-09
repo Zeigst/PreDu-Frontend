@@ -4,7 +4,9 @@ const PurchaseController = () => {
 
   return (
     <div className="purchase-controller">
-      
+      <div>
+        
+      </div>
     </div>
   )
 }

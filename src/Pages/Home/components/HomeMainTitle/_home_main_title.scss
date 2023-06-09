@@ -1,0 +1,74 @@
+.home-main-title {
+  height: calc(100vh - 80px - 0.390625vw);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10vh;
+
+  .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+    h1 {
+      font-size: calc(20px + 6vw);
+      text-align: center;
+      color: white;
+      font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      b {
+        color: rgb(224, 165, 0);
+      }
+
+      &.hack-text {
+        font-family: 'Space Mono', monospace;
+        font-size: calc(25px + 6vw);
+        background: linear-gradient(315deg, rgb(250, 48, 82), rgb(224, 165, 0));
+        padding: 20px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  button {
+    @include flexCenter;
+    position: relative;
+    width: calc(200px + 6vw);
+    height: calc(60px + 3vw);
+    border-radius: 10px;
+    border: 2px solid rgb(white, 0.7);
+    border-right: 2px solid rgb(white, 0.4);
+    border-bottom: 2px solid rgb(white, 0.4);
+    box-shadow: 0 5px 45px rgba(black, 0.1);
+    background-color: rgb(white, 0.1);
+    font-family: 'Cherry Bomb One';
+    font-size: calc(10px + 2vw);
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.6s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50px;
+      height: 100%;
+      background: rgb(255, 255, 255, 0.6);
+      transform: skewX(45deg) translateX(calc(250px + 5vw));
+      transition: 0.6s;
+    }
+    
+    &:hover {
+      transform: translateY(-20px);
+      &::before {
+        transform: skewX(45deg) translateX(calc(-250px - 5vw));
+      }
+    }
+  }
+}

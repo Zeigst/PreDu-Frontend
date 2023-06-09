@@ -1,0 +1,8 @@
+@import './components/HomeMainTitle/home_main_title';
+@import './components/CardSlider/home_card_swiper';
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -65,7 +65,7 @@ const ShopProduct = (props) => {
         </h4>
       </div> 
       <h4 className="product_price">
-        <i><b>{cost_per_unit} VND</b></i>
+        <i><b>{cost_per_unit.toLocaleString("en-US")} VND</b></i>
       </h4>
       <p className="desc">{desc}</p>
       <div className="product_counter">
