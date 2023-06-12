@@ -24,10 +24,10 @@ const CartList = () => {
         <table>
           <thead>
             <tr className="table-header">
-              <th colspan="3" style={{width: "32%"}}>PRODUCT</th>
+              <th colSpan="3" style={{width: "32%"}}>PRODUCT</th>
               <th style={{width: "20%"}}>COST</th>
               <th style={{width: "15%"}}>QUANTITY</th>
-              <th colspan="2" style={{width: "33%"}}>TOTAL</th>
+              <th colSpan="2" style={{width: "33%"}}>TOTAL</th>
             </tr>
           </thead>
           
@@ -44,7 +44,7 @@ const CartList = () => {
       <CartEmpty numCartItems={numCartItems}/>
 
       <div className="table-footer">
-        <h2>Your Cart</h2>
+        <h2>Your Cart: {numCartItems}</h2>
         <h2>Total: {costTotal.toLocaleString("en-US")} VND</h2>
       </div>
     </div>

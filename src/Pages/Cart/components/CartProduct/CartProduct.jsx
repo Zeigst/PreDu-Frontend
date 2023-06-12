@@ -54,7 +54,7 @@ const CartProduct = (props) => {
           <h3>{subtitle}</h3>
         </div>
       </td>
-      <td style={{width: "2%"}}>
+      <td style={{width: "2%"}} className="info-button-td">
         <button className="info-button" onClick={toProductDetails}>
           <InfoIcon className="icon"/>
         </button>
@@ -67,7 +67,7 @@ const CartProduct = (props) => {
           <button className="minus-button" onClick={minus}>
             <MinusIcon className="icon"/>
           </button>
-          <input type="number" min={1} value={quantity}/>
+          <input type="number" min={1} value={quantity} readOnly/>
           <button className="plus-button" onClick={plus}>
             <PlusIcon className="icon"/>
           </button>

@@ -2,6 +2,9 @@ import netflix_img from "./Resources/CategoryImages/Netflix.png"
 import chegg_img from "./Resources/CategoryImages/Chegg.jpg"
 import bartleby_img from "./Resources/CategoryImages/Bartleby.png"
 import canva_img from "./Resources/CategoryImages/Canva.png"
+import sale1_img from "./Resources/BannerSliderImages/sale1.jpg"
+import sale2_img from "./Resources/BannerSliderImages/sale2.jpg"
+import sale3_img from "./Resources/BannerSliderImages/sale3.jpg"
 
 
 export const product_database = [
@@ -112,3 +115,5 @@ export const education_categories = ["chegg", "bartleby", "codecademy"]
 export const entertainment_categories = ["netflix", "youtube", "spotify"]
 
 export const office_categories = ["canva", "vpn"]
+
+export const banner_images = [sale1_img, sale2_img, sale3_img]

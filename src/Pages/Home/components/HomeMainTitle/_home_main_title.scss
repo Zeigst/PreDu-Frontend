@@ -29,6 +29,11 @@
         background: linear-gradient(315deg, rgb(250, 48, 82), rgb(224, 165, 0));
         padding: 20px;
         border-radius: 10px;
+        color: black;
+
+        &:hover {
+          box-shadow: 0 0 20px rgba(white, 0.5);
+        }
       }
     }
   }
