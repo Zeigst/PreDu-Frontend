@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { register } from 'swiper/element/bundle';
 import { banner_images } from '../../../../Data'
+import { Autoplay } from 'swiper';
 // register Swiper custom elements
 register();
 
@@ -29,7 +30,7 @@ export const BannerSwiper = () => {
         centered-slides="true"
         loop="true"
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false
         }}
       >

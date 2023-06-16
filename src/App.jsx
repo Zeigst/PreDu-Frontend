@@ -8,6 +8,8 @@ import Home from './Pages/Home/Home';
 import Shop from './Pages/Shop/Shop';
 import Cart from './Pages/Cart/Cart';
 import Product from './Pages/Product/Product';
+import User from './Pages/User/User';
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
             <Route exact path='/Shop' element={<><Header/><Shop/><Footer/></>}/>
             <Route exact path='/Cart' element={<><Header/><Cart/><Footer/></>}/>
             <Route exact path='/Product' element={<><Header/><Product/><Footer/></>}/>
+            <Route exact path='/User' element={<><User/></>}/>
           </Routes>
         </Router>
       </PreduContextProvider>

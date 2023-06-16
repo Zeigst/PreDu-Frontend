@@ -6,6 +6,7 @@ export const PreduContext = createContext(null);
 
 export const PreduContextProvider = (props) => {
 
+  const [authenticated, setAuthenticated] = useState(false)
   const [shop, updateShop] = useState([])
   const [cart, updateCart] = useState({})
   const [costTotal, updateCostTotal] = useState(0)
@@ -25,6 +26,8 @@ export const PreduContextProvider = (props) => {
   useEffect(() => {
     getInitialShopData();
   }, []);
+
+  
   
   // ====== SideBar Category Menu ===== //
   const [categoryMenuStatus, setCategoryMenuStatus] = useState(false)
@@ -94,6 +97,7 @@ export const PreduContextProvider = (props) => {
   // }
 
   const contextValue = { 
+    authenticated, setAuthenticated,
     shop, cart, numCartItems, costTotal, setCartProductQuantity,
     categoryMenuStatus, changeCategoryMenuStatus, 
     selectCategory, changeSelectCategory,

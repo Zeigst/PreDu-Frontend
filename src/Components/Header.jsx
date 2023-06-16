@@ -47,6 +47,15 @@ const Header = () => {
     navigate('/Cart')
   }
 
+  function toUser() {
+    window.scrollTo(0, 0);
+    setOpen(!isOpen)
+    if (categoryMenuStatus === true) {
+      changeCategoryMenuStatus()
+    }
+    navigate('/User')
+  }
+
   // STICKY SCROLL
   window.addEventListener("scroll", function() {
     var selection = document.querySelector('.header') !== null;
@@ -101,7 +110,7 @@ const Header = () => {
             <h2>Your Cart</h2>
             <CartAlert numCartItems={numCartItems}/>
           </button>
-          <button className="account-button" type="button">
+          <button className="account-button" type="button" onClick={toUser}>
             <AccountCircleIcon className="icon"/>
           </button>
         </div>
