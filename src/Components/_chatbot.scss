@@ -1,0 +1,56 @@
+.chat-bot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .container {
+    height: 80vh;
+    width: 300px;
+    display: none;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .main-container {
+      background-color: map-get($map: $template-colors, $key: "color4");
+      .message-list {
+        background-color: map-get($map: $template-colors, $key: "color4");
+      }
+      .message-input {
+        background-color: map-get($map: $template-colors, $key: "color3");
+      }
+    }
+
+    &.open {
+      display: initial;
+    }
+  }
+
+  .chat-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid rgb(255, 255, 255, 0.7);
+    border-right: 2px solid rgb(255, 255, 255, 0.4);
+    border-bottom: 2px solid rgb(255, 255, 255, 0.4);
+    box-shadow: 0 5px 45px rgba(0,0,0,0.1);
+    background: linear-gradient(315deg, rgb(0, 15, 224), rgb(26, 5, 118));
+
+    .icon {
+      fill: white;
+      height: 35px;
+      width: 35px;
+    }
+
+    &:hover {
+      box-shadow: 0 0 15px rgba(white, 0.5);
+    }
+  }
+}

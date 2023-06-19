@@ -3,15 +3,25 @@ import { PreduContext } from "../../../../PreduContext"
 import { ReactComponent as UserIcon } from "../../../../Resources/Icons/person_fill.svg"
 import { ReactComponent as LockIcon } from "../../../../Resources/Icons/lock_fill.svg"
 import { ReactComponent as LoginIcon } from "../../../../Resources/Icons/login.svg"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-  const { authenticated, setAuthenticated } = useContext(PreduContext)
+  const navigate = useNavigate()
+  const { authenticated, setAuthenticated, categoryMenuStatus, changeCategoryMenuStatus } = useContext(PreduContext)
   const [ signupState, setSignupState ] = useState(false) 
+
+  function toHome() {
+    window.scrollTo(0, 0);
+    if (categoryMenuStatus === true) {
+      changeCategoryMenuStatus()
+    }
+    navigate('/Home')
+  }
   
   return (
     <main className="login">
       <div className="container">
-        <h1>PreDu</h1>
+        <h1 onClick={toHome}>PreDu</h1>
         <div className="signin_form">
           <table>
             <tbody>
