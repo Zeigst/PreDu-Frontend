@@ -4,7 +4,7 @@ import Login from "./components/Login/Login"
 import Profile from "./components/Profile/Profile"
 
 const User = () => {
-  const { authenticated, setAuthenticated } = useContext(PreduContext)
+  const { authenticated } = useContext(PreduContext)
   
   if (authenticated) {
     return <Profile/>

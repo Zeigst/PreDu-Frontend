@@ -14,7 +14,7 @@ export const product_database = [
     subtitle: "1 Month Combo",
     desc: "For the low price of 69k, enjoy many movies provided by Netflix for a whole month.",
     category: "netflix",
-    img_link: "https://drive.google.com/uc?export=view&id=1z5tqDWqXgStobemnc4Geoy7Rf08Hoxob",
+    img_link: "https://drive.google.com/uc?export=view&id=1TXT-Tv-vYtTVvXAxVLxXfBEizRyjDWhY",
     stock: 200,
     cost_per_unit: 69000,
   },

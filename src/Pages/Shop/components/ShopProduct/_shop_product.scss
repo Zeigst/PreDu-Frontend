@@ -164,7 +164,10 @@
       }
     }
   }
+}
 
-
-
+@media (max-width: 576px) {
+  .shop-product {
+    width: 45vw;
+  }
 }

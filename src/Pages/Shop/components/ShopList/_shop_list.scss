@@ -15,7 +15,17 @@
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 1vw;
     justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 576px) {
+  .shop-list {
+    &_products {
+      justify-content: space-evenly;
+      gap: 0;
+      row-gap: 10px;
+    }
   }
 }

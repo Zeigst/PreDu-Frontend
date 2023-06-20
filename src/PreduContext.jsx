@@ -1,12 +1,16 @@
 import React, { createContext, useState, useEffect } from "react";
 import { product_database } from "./Data";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const PreduContext = createContext(null);
 
 export const PreduContextProvider = (props) => {
 
+  const api_path = "http://127.0.0.1:8000"
+
   const [authenticated, setAuthenticated] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
   const [shop, updateShop] = useState([])
   const [cart, updateCart] = useState({})
   const [costTotal, updateCostTotal] = useState(0)
@@ -27,6 +31,10 @@ export const PreduContextProvider = (props) => {
     getInitialShopData();
   }, []);
 
+  // ====== Access Token ===== //
+  const getAccessToken = () => {
+    return (Cookies.get('access_token'));
+  }
   
   
   // ====== SideBar Category Menu ===== //
@@ -97,6 +105,8 @@ export const PreduContextProvider = (props) => {
   // }
 
   const contextValue = { 
+    api_path, getAccessToken,
+    currentUser, setCurrentUser,
     authenticated, setAuthenticated,
     shop, cart, numCartItems, costTotal, setCartProductQuantity,
     categoryMenuStatus, changeCategoryMenuStatus, 
