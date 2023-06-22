@@ -7,8 +7,7 @@ import { ReactComponent as ArrowCircleRightIcon } from "../../../../Resources/Ic
 import { education_categories, entertainment_categories, office_categories } from "../../../../Data";
 
 const CategoryMenu = () => {
-  const { categoryMenuStatus, changeSelectCategory, searchProduct } = useContext(PreduContext)
-  const [ menuState, setMenuState] = useState([false, false, false])
+  const { categories, categoryMenuStatus, changeSelectCategory, searchProduct, menuState, setMenuState } = useContext(PreduContext)
   const [ userSearchInput, setUserSearchInput] = useState("")
 
   function handleMenuState(position) {
@@ -57,47 +56,21 @@ const CategoryMenu = () => {
           <ArrowCircleRightIcon className="icon"/>
         </div>
         
-        <div className="category-dropdown">
-          <div className="select" onClick={()=>{handleMenuState(0)}}>
-            <h4>Education</h4>
-            <DropdownIcon className={`icon ${menuState[0] ? "open" : ""}`}/>
+        {categories.map((category) =>  (
+          <div className="category-dropdown">
+            <div className="select" onClick={()=>{handleMenuState(categories.indexOf(category))}}>
+              <h4>{category.name}</h4>
+              <DropdownIcon className={`icon ${menuState[categories.indexOf(category)] ? "open" : ""}`}/>
+            </div>
+            <ul className={`menu ${menuState[categories.indexOf(category)] ? "open" : ""}`}>
+              {category.brands.map((brand) => (
+                <li className="category-item" key={brand} onClick={()=>{changeSelectCategory(brand)}}>
+                  <h5>{brand}</h5>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className={`menu ${menuState[0] ? "open" : ""}`}>
-            {education_categories.map((category) => (
-              <li className="category-item" key={category} onClick={()=>{changeSelectCategory(category)}}>
-                <h5>{category}</h5>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="category-dropdown">
-          <div className="select" onClick={()=>{handleMenuState(1)}}>
-            <h4>Entertainment</h4>
-            <DropdownIcon className={`icon ${menuState[1] ? "open" : ""}`}/>
-          </div>
-          <ul className={`menu ${menuState[1] ? "open" : ""}`}>
-            {entertainment_categories.map((category) => (
-              <li className="category-item" key={category} onClick={()=>{changeSelectCategory(category)}}>
-                <h5>{category}</h5>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="category-dropdown">
-          <div className="select" onClick={()=>{handleMenuState(2)}}>
-            <h4>Office</h4>
-            <DropdownIcon className={`icon ${menuState[2] ? "open" : ""}`}/>
-          </div>
-          <ul className={`menu ${menuState[2] ? "open" : ""}`}>
-            {office_categories.map((category) => (
-              <li className="category-item" key={category} onClick={()=>{changeSelectCategory(category)}}>
-                <h5>{category}</h5>
-              </li>
-            ))}
-          </ul>
-        </div>
+        ))}
       </div>
     </div>
   )

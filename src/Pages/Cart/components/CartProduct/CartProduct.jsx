@@ -7,7 +7,7 @@ import { ReactComponent as InfoIcon } from "../../../../Resources/Icons/info.svg
 
 const CartProduct = (props) => {
   const navigate = useNavigate()
-  const { id, title, subtitle, desc, category, img_link, stock, cost_per_unit } = props.data;
+  const { id, category, category_id, brand, brand_id, name, description, image, stock_quantity, cost_per_unit } = props.data;
   const { cart, setCartProductQuantity } = useContext(PreduContext)
   const [ quantity, setQuantity] = useState(cart[id])
   const [ costTotal, setCostTotal] = useState(cart[id] * cost_per_unit)
@@ -31,14 +31,16 @@ const CartProduct = (props) => {
   const toProductDetails = () => {
     navigate('/Product', {
       state : {
-          id: id,
-          title: title,
-          subtitle: subtitle,
-          desc: desc,
-          category: category,
-          img_link: img_link,
-          stock: stock,
-          cost_per_unit: cost_per_unit
+        id: id,
+        name: name,
+        brand: brand,
+        brand_id: brand_id,
+        category: category,
+        category_id: category_id,
+        description: description,
+        image: image,
+        stock_quantity: stock_quantity,
+        cost_per_unit: cost_per_unit
       },
   });
   }
@@ -46,12 +48,11 @@ const CartProduct = (props) => {
   return (
     <tr className="cart-product">
       <td style={{width: "10%"}}>
-        <img src={img_link}></img>
+        <img src={image}></img>
       </td>
       <td style={{width: "20%"}}>
         <div className="product-title">
-          <h2>{title}</h2>
-          <h3>{subtitle}</h3>
+          <h3>{name}</h3>
         </div>
       </td>
       <td style={{width: "2%"}} className="info-button-td">

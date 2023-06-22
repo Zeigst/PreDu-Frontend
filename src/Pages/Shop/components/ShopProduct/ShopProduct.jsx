@@ -9,7 +9,7 @@ import { PreduContext } from "../../../../PreduContext"
 
 const ShopProduct = (props) => {
   let navigate = useNavigate();
-  const { id, title, subtitle, desc, category, img_link, stock, cost_per_unit } = props.data;
+  const { id, name, brand, brand_id, category, category_id, description, image, stock_quantity, cost_per_unit } = props.data;
   const { cart, setCartProductQuantity } = useContext(PreduContext)
   const [ quantity, setQuantity] = useState(cart[id])
 
@@ -42,12 +42,14 @@ const ShopProduct = (props) => {
     navigate('/Product', {
       state : {
           id: id,
-          title: title,
-          subtitle: subtitle,
-          desc: desc,
+          name: name,
+          brand: brand,
+          brand_id: brand_id,
           category: category,
-          img_link: img_link,
-          stock: stock,
+          category_id: category_id,
+          description: description,
+          image: image,
+          stock_quantity: stock_quantity,
           cost_per_unit: cost_per_unit
       },
   });
@@ -55,19 +57,19 @@ const ShopProduct = (props) => {
   
   return (
     <div className="shop-product">
-      <img src={img_link}></img>
+      <img src={image}></img>
       <div className="product_title">
         <h3>
-          <b>{title}</b>
+          <b>{brand}</b>
         </h3>
         <h4>
-          <b>{subtitle}</b>
+          <b>{name}</b>
         </h4>
       </div> 
       <h4 className="product_price">
         <i><b>{cost_per_unit.toLocaleString("en-US")} VND</b></i>
       </h4>
-      <p className="desc">{desc}</p>
+      <p className="desc">{description}</p>
       <div className="product_counter">
         <button className="minus" onClick={minus}>
           <RemoveIcon className="icon"/>

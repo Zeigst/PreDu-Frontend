@@ -11,8 +11,8 @@ const ShopList = () => {
       <div className="shop-list_products">
         {shop.map((product) => {
           if (productSearchQuery !== "") {
-            if ((String(product.title) + " " +
-              String(product.subtitle) + " " +
+            if ((String(product.name) + " " +
+              String(product.brand) + " " +
               String(product.category) + " " +
               String(product.cost_per_unit)).toLowerCase().includes(productSearchQuery)) {
                 return <ShopProduct data={product} key={product.id}/>
@@ -23,7 +23,7 @@ const ShopList = () => {
               return <ShopProduct data={product} key={product.id}/>
             }
             else {
-              if (selectCategory === product.category) {
+              if (selectCategory === product.brand) {
                 return <ShopProduct data={product} key={product.id}/>
               }
             }

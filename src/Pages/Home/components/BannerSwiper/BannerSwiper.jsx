@@ -8,17 +8,17 @@ register();
 export const BannerSwiper = () => {
   const swiperElRef = useRef(null);
 
-  useEffect(() => {
-    // listen for Swiper events using addEventListener
-    swiperElRef.current.addEventListener('progress', (e) => {
-      const [swiper, progress] = e.detail;
-      console.log(progress);
-    });
+  // useEffect(() => {
+  //   // listen for Swiper events using addEventListener
+  //   swiperElRef.current.addEventListener('progress', (e) => {
+  //     const [swiper, progress] = e.detail;
+  //     console.log(progress);
+  //   });
 
-    swiperElRef.current.addEventListener('slidechange', (e) => {
-      console.log('slide changed');
-    });
-  }, []);
+  //   swiperElRef.current.addEventListener('slidechange', (e) => {
+  //     console.log('slide changed');
+  //   });
+  // }, []);
 
   return (
     <div className="banner-swiper">
@@ -36,8 +36,8 @@ export const BannerSwiper = () => {
       >
         {banner_images.map((img) => {
           return (
-            <swiper-slide>
-              <img src={img}s></img>
+            <swiper-slide key={img}>
+              <img src={img}></img>
             </swiper-slide>
           )
         })}

@@ -1,9 +1,19 @@
 import React, { useContext, useState } from "react"
 import { ReactComponent as InputIcon } from '../../../../Resources/Icons/input.svg'
 import { ReactComponent as CheckoutIcon } from '../../../../Resources/Icons/shopping_cart_checkout.svg'
+import { PreduContext } from "../../../../PreduContext"
+import axios from "axios"
 
 const PurchaseController = () => {
+  const { api_path } = useContext(PreduContext)
   const [ couponDescription, setCouponDescription] = useState("Empty")
+  const [ couponCode, setCouponCode ] = useState("")
+
+  const getCoupon = async() => {
+    var couponAPI = api_path + "/api/coupons/" + couponCode.toUpperCase()
+    const response = await axios.get(couponAPI)
+    console.log(response)
+  }
 
   return (
     <div className="purchase-controller">
@@ -14,8 +24,8 @@ const PurchaseController = () => {
       
       <div className="coupon-container">
         <form>
-          <input type="text" placeholder="Your Coupon"></input>
-          <button type="button">
+          <input type="text" placeholder="Your Coupon" onChange={(e)=>setCouponCode(e.target.value)} value={couponCode}></input>
+          <button type="button" onClick={getCoupon}>
             <InputIcon className="icon"/>
           </button>
         </form>

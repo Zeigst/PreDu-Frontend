@@ -11,20 +11,49 @@ export const PreduContextProvider = (props) => {
 
   const [authenticated, setAuthenticated] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
+  const [categories, updateCategories] = useState([])
+  const [brands, updateBrands] = useState([])
   const [shop, updateShop] = useState([])
   const [cart, updateCart] = useState({})
   const [costTotal, updateCostTotal] = useState(0)
   const [numCartItems, updateNumCartItems] = useState(0)
   const [productSearchQuery, updateProductSearchQuery] = useState("")
+  const [ menuState, setMenuState] = useState([])
   
   async function getInitialShopData() {
-    const result = product_database //await axios.get('https://dummyjson.com/products/1')
-    updateShop(result)
+    const brands_result = await (await axios.get(api_path + "/api/brands/")).data
+
+    const categories_result = await (await axios.get(api_path + "/api/categories/")).data
+    for (let i in categories_result) {
+      let brand_ids = await (await axios.get(api_path + "/api/categories/brands/" + String(categories_result[i]["id"]))).data;
+      categories_result[i]["brand_ids"] = brand_ids
+      let brands = []
+      for (let n in brand_ids) {
+        brands.push(_getNameByID(brands_result, brand_ids[n]))
+      }
+      categories_result[i]["brands"] = brands
+    }
+
+    const products_result = await (await axios.get(api_path + "/api/products/")).data
+    for (let i in products_result) {
+      products_result[i]["category"] = _getNameByID(categories_result, products_result[i]["category_id"]);
+      products_result[i]["brand"] = _getNameByID(brands_result, products_result[i]["brand_id"])
+    }
+
+    updateCategories(categories_result)
+    updateBrands(brands_result)
+    updateShop(products_result)
     const new_cart = {}
-    for (let i=0; i<result.length; i++) {
-      new_cart[result[i]["id"]] = 0
+    for (let i=0; i<products_result.length; i++) {
+      new_cart[products_result[i]["id"]] = 0
     }
     updateCart(new_cart);
+    
+    const newMenuState = []
+    for (let i=0; i<categories_result.length; i++) {
+      newMenuState.push(false)
+    }
+    setMenuState(newMenuState)
   }
   
   useEffect(() => {
@@ -35,7 +64,16 @@ export const PreduContextProvider = (props) => {
   const getAccessToken = () => {
     return (Cookies.get('access_token'));
   }
-  
+
+  // ====== UTIL ===== //
+  const _getNameByID = (array, id) => {
+    for (let i in array) {
+      if (array[i]["id"] === id) {
+        return array[i]["name"]
+      }
+    }
+    return ""
+  }
   
   // ====== SideBar Category Menu ===== //
   const [categoryMenuStatus, setCategoryMenuStatus] = useState(false)
@@ -97,21 +135,16 @@ export const PreduContextProvider = (props) => {
     updateNumCartItems(count)
   }
 
-  // ===== UTIL ===== //
-  // function numberWithCommas(x) {
-  //   var parts = x.toString().split(".");
-  //   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  //   return parts.join(".");
-  // }
-
   const contextValue = { 
     api_path, getAccessToken,
     currentUser, setCurrentUser,
     authenticated, setAuthenticated,
+    categories,
     shop, cart, numCartItems, costTotal, setCartProductQuantity,
     categoryMenuStatus, changeCategoryMenuStatus, 
     selectCategory, changeSelectCategory,
     productSearchQuery, searchProduct,
+    menuState, setMenuState,
   }
   return (
     <PreduContext.Provider value={contextValue}>
