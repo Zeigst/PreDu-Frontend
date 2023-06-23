@@ -57,7 +57,7 @@ const CategoryMenu = () => {
         </div>
         
         {categories.map((category) =>  (
-          <div className="category-dropdown">
+          <div className="category-dropdown" key={category.name}>
             <div className="select" onClick={()=>{handleMenuState(categories.indexOf(category))}}>
               <h4>{category.name}</h4>
               <DropdownIcon className={`icon ${menuState[categories.indexOf(category)] ? "open" : ""}`}/>

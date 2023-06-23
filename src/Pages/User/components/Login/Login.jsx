@@ -12,8 +12,7 @@ const Login = () => {
   const [ username, setUsername ] = useState("")
   const [ password, setPassword ] = useState("")
 
-  const { api_path, getAccessToken, currentUser, setCurrentUser, setAuthenticated, categoryMenuStatus, changeCategoryMenuStatus } = useContext(PreduContext)
-  const [ signupState, setSignupState ] = useState(false) 
+  const { api_path, getAccessToken, setOnSignupPage, currentUser, setCurrentUser, setAuthenticated, categoryMenuStatus, changeCategoryMenuStatus } = useContext(PreduContext)
 
   function toHome() {
     window.scrollTo(0, 0);
@@ -21,6 +20,10 @@ const Login = () => {
       changeCategoryMenuStatus()
     }
     navigate('/Home')
+  }
+
+  function toSignup() {
+    setOnSignupPage(true)
   }
 
   async function handleLogin(e) {
@@ -90,8 +93,9 @@ const Login = () => {
             <LoginIcon className="button_icon"/>
           </button>
 
-          <div>
-            <p>Don't have an account? Sign up <a>here!</a></p>
+          <div className="to-signup-text">
+            <p>Don't have an account?</p>
+            <p>Sign up <a onClick={toSignup}>here!</a></p>
           </div>
         </div>
       </div>

@@ -99,5 +99,19 @@
 
       }
     }
+
+    .to-signup-text {
+      font-size: calc(18px + 0.390625vw);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      a {
+        text-decoration: underline;
+        color: rgb(0, 136, 255);
+        cursor: pointer;
+      }
+    }
   }
 }

@@ -10,12 +10,13 @@ export const PreduContextProvider = (props) => {
   const api_path = "http://127.0.0.1:8000"
 
   const [authenticated, setAuthenticated] = useState(false)
+  const [onSignupPage, setOnSignupPage] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
   const [categories, updateCategories] = useState([])
   const [brands, updateBrands] = useState([])
   const [shop, updateShop] = useState([])
   const [cart, updateCart] = useState({})
-  const [costTotal, updateCostTotal] = useState(0)
+  
   const [numCartItems, updateNumCartItems] = useState(0)
   const [productSearchQuery, updateProductSearchQuery] = useState("")
   const [ menuState, setMenuState] = useState([])
@@ -102,7 +103,63 @@ export const PreduContextProvider = (props) => {
   }
 
 
+  // ===== COUPON ===== //
+  
+  const [ coupon, setCoupon ] = useState(
+    {
+      "code": "",
+      "minimum_order": 0,
+      "maximum_discount": 0
+    })
+  const [ couponValue, setCouponValue ] = useState(0)
+  const [ couponMessage, setCouponMessage ] = useState("No Coupon Applied")
+
+  const applyCoupon = (totalCost, coupon) => {
+    let value = 0
+    let couponValid = false
+
+    if (coupon.code === "") {
+      setCouponMessage("No Coupon Applied")
+    }
+    else if (!coupon.is_active) {
+      setCouponMessage("This coupon code is no longer active.")
+    }
+    else if (totalCost < coupon.minimum_order) {
+      setCouponMessage("Min spend does not reach.")
+    }
+    else {
+      couponValid = true
+      setCouponMessage("Coupon Applied")
+    }
+    
+
+    if (couponValid) {
+      if (coupon.type === 1) {
+        value = coupon.fixed_amount
+      }
+      else if (coupon.type === 2) {
+        value = totalCost / 100 * coupon.percentage_amount 
+        if (value >= coupon.maximum_discount) {
+          value = coupon.maximum_discount
+        }
+      }
+      if (coupon >= totalCost) {
+        value = totalCost
+      }
+    }
+    else {
+      value = 0
+    }
+
+    setCouponValue(value)
+    updateCostFinal(totalCost - value)
+  }
+
+
   // ===== Cart ===== //
+  const [costTotal, updateCostTotal] = useState(0)
+  const [costFinal, updateCostFinal] = useState(0)
+
   const getCost = (id) => {
     for (let i=0; i<shop.length; i++) {
       if (shop[i]["id"] === id) {
@@ -129,18 +186,25 @@ export const PreduContextProvider = (props) => {
     }
     updateNumCartItems(count)
 
+    applyCoupon(new_cost, coupon)
+
     // UPDATE STATE
     updateCart(newCart)
     updateCostTotal(new_cost)
     updateNumCartItems(count)
   }
 
+
+
+
   const contextValue = { 
     api_path, getAccessToken,
     currentUser, setCurrentUser,
     authenticated, setAuthenticated,
+    onSignupPage, setOnSignupPage,
     categories,
-    shop, cart, numCartItems, costTotal, setCartProductQuantity,
+    shop, cart, numCartItems, costTotal, costFinal, setCartProductQuantity,
+    coupon, couponValue, couponMessage, setCoupon, applyCoupon,
     categoryMenuStatus, changeCategoryMenuStatus, 
     selectCategory, changeSelectCategory,
     productSearchQuery, searchProduct,

@@ -2,15 +2,21 @@ import React, { useContext } from "react"
 import { PreduContext } from "../../PreduContext"
 import Login from "./components/Login/Login"
 import Profile from "./components/Profile/Profile"
+import Signup from "./components/Signup/Signup"
 
 const User = () => {
-  const { authenticated } = useContext(PreduContext)
+  const { authenticated, onSignupPage } = useContext(PreduContext)
   
   if (authenticated) {
     return <Profile/>
   }
   else {
-    return <Login/>
+    if (onSignupPage) {
+      return <Signup/>
+    }
+    else {
+      return <Login/>
+    }
   }
 }
 

@@ -71,6 +71,20 @@
       align-items: center;
       justify-content: space-between;
     }
+
+    .remove-button {
+      margin-top: 10px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+      padding: 10px;
+      font-size: calc(12px + 0.390625vw);
+      font-weight: bold;
+      width: 35%;
+    }
   }  
   
   .divider {
