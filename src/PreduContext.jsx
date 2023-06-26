@@ -108,8 +108,8 @@ export const PreduContextProvider = (props) => {
   const [ coupon, setCoupon ] = useState(
     {
       "code": "",
-      "minimum_order": 0,
-      "maximum_discount": 0
+      "min_order_required": 0,
+      "max_discount_applicable": 0
     })
   const [ couponValue, setCouponValue ] = useState(0)
   const [ couponMessage, setCouponMessage ] = useState("No Coupon Applied")
@@ -124,7 +124,7 @@ export const PreduContextProvider = (props) => {
     else if (!coupon.is_active) {
       setCouponMessage("This coupon code is no longer active.")
     }
-    else if (totalCost < coupon.minimum_order) {
+    else if (totalCost < coupon.min_order_required) {
       setCouponMessage("Min spend does not reach.")
     }
     else {
@@ -134,16 +134,16 @@ export const PreduContextProvider = (props) => {
     
 
     if (couponValid) {
-      if (coupon.type === 1) {
-        value = coupon.fixed_amount
+      if (coupon.type === "fixed") {
+        value = coupon.value
       }
-      else if (coupon.type === 2) {
-        value = totalCost / 100 * coupon.percentage_amount 
-        if (value >= coupon.maximum_discount) {
-          value = coupon.maximum_discount
+      else if (coupon.type === "percentage") {
+        value = totalCost / 100 * coupon.value
+        if (value >= coupon.max_discount_applicable) {
+          value = coupon.max_discount_applicable
         }
       }
-      if (coupon >= totalCost) {
+      if (value >= totalCost) {
         value = totalCost
       }
     }
@@ -193,8 +193,6 @@ export const PreduContextProvider = (props) => {
     updateCostTotal(new_cost)
     updateNumCartItems(count)
   }
-
-
 
 
   const contextValue = { 

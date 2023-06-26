@@ -45,7 +45,7 @@ const Login = () => {
     if(getAccessToken() !== null) {
       const me_response = await axios.get(profile_api_path, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}});
       setCurrentUser(me_response.data)
-      if (me_response.data.is_admin) {
+      if (me_response.data.role === "admin") {
         window.scrollTo(0, 0);
         setAuthenticated(true)
         navigate('/Admin')

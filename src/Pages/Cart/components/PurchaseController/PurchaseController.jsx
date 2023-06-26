@@ -23,8 +23,8 @@ const PurchaseController = () => {
   const removeCoupon = () => {
     const new_coupon = {
       "code": "",
-      "minimum_order": 0,
-      "maximum_discount": 0
+      "min_order_required": 0,
+      "max_discount_applicable": 0
     }
     setCoupon(new_coupon)
     applyCoupon(costTotal, new_coupon)
@@ -54,11 +54,11 @@ const PurchaseController = () => {
         </div>
         <div className="coupon-value">
           <h4>Min Spend:</h4>
-          <p>{coupon.minimum_order.toLocaleString("en-US")} VND</p>
+          <p>{coupon.min_order_required.toLocaleString("en-US")} VND</p>
         </div>
         <div className="coupon-value">
           <h4>Max Value</h4>
-          <p>{coupon.maximum_discount.toLocaleString("en-US")} VND</p>
+          <p>{coupon.max_discount_applicable.toLocaleString("en-US")} VND</p>
         </div>
         <div className="coupon-value">
           <h4>Status: </h4>

@@ -1,0 +1,164 @@
+.signup {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    // height: 200vh;
+    width: max(350px, 50vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba($color: black, $alpha: 0.5);
+
+    border: 2px solid rgb(255, 255, 255, 0.7);
+    border-right: 2px solid rgb(255, 255, 255, 0.4);
+    border-bottom: 2px solid rgb(255, 255, 255, 0.4);
+    gap: 30px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+
+    h1 {
+      color: white;
+      font-family: 'Cherry Bomb One';
+      font-size: calc(40px + 2vw);
+      cursor: pointer;
+
+      &:hover {
+        color: map-get($map: $template-colors, $key: "orange");
+      }
+    }
+
+    .signup_form {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      justify-content: center;
+      width: 90%;
+      color: white;
+
+      table.name {
+        width: 100%;
+        border-collapse: collapse;
+        vertical-align: center;
+
+        .separator {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 20px;
+          padding-top: 30px;
+
+          .line {
+            width: 100%;
+            height: 1px;
+            border-bottom: 2px solid map-get($map: $template-colors, $key: "orange");
+          }
+
+          h2 {
+            flex-shrink: 0;
+            color: orange;
+          }
+        }
+        
+        th {
+          padding: 25px 0 5px 25px;
+          text-align: left;
+        }
+
+        td {
+          padding: 0 20px 0 20px;
+          text-align: left;
+          input {
+            width: 100%;
+            height: 30px;
+            border-radius: 10px;
+            padding: 5px;
+            outline: none;
+          }
+
+          textarea {
+            resize: none;
+            width: 100%;
+            height: 100px;
+            border-radius: 10px;
+            padding: 5px;
+            outline: none;
+          }
+        }
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+
+      .signup-button {
+        width: 200px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        position: relative;
+        cursor: pointer;
+        background-color: rgb(0, 168, 0);
+        color: white;
+        border: none;
+        font-size: calc(18px + 0.390625vw);
+  
+        &:hover {
+          background-color: green;
+        }
+      }
+
+      .btn-divider {
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+  
+        .line- {
+          height: 1px;
+          width: 50%;
+          border-bottom: 1px solid rgba(white, 0.5);
+        }
+  
+        h4 {
+          color: white;
+        }
+      }
+
+      .login-button {
+        width: 170px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        position: relative;
+        cursor: pointer;
+        background-color: orange;
+        color: white;
+        border: none;
+        font-size: calc(16px + 0.390625vw);
+  
+        &:hover {
+          background-color: map-get($map: $template-colors, $key: "orange");
+        }
+      }
+    }
+
+
+  }
+}
