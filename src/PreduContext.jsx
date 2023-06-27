@@ -194,6 +194,14 @@ export const PreduContextProvider = (props) => {
     updateNumCartItems(count)
   }
 
+  const isCartEmpty = () => {
+    if (cart === {}) {
+      return true
+    }
+    const cartEmpty = Object.values(cart).every(value => value === 0);
+    return cartEmpty
+  }
+
 
   const contextValue = { 
     api_path, getAccessToken,
@@ -201,7 +209,7 @@ export const PreduContextProvider = (props) => {
     authenticated, setAuthenticated,
     onSignupPage, setOnSignupPage,
     categories,
-    shop, cart, numCartItems, costTotal, costFinal, setCartProductQuantity,
+    shop, cart, numCartItems, costTotal, costFinal, setCartProductQuantity, isCartEmpty,
     coupon, couponValue, couponMessage, setCoupon, applyCoupon,
     categoryMenuStatus, changeCategoryMenuStatus, 
     selectCategory, changeSelectCategory,

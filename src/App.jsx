@@ -11,6 +11,7 @@ import Cart from './Pages/Cart/Cart';
 import Product from './Pages/Product/Product';
 import User from './Pages/User/User';
 import Admin from './Pages/Admin/Admin';
+import Order from './Pages/Order/Order';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route exact path='/Home' element={<><Header/><Home/><Footer/><ChatBot/></>}/>
             <Route exact path='/Shop' element={<><Header/><Shop/><Footer/><ChatBot/></>}/>
             <Route exact path='/Cart' element={<><Header/><Cart/><Footer/><ChatBot/></>}/>
+            <Route exact path='/Order' element={<><Header/><Order/><Footer/><ChatBot/></>}/>
             <Route exact path='/Product' element={<><Header/><Product/><Footer/></>}/>
             <Route exact path='/User' element={<><User/></>}/>
             <Route exact path='/Admin' element={<><Admin/></>}/>

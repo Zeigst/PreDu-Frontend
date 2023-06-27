@@ -3,11 +3,31 @@ import { ReactComponent as InputIcon } from '../../../../Resources/Icons/input.s
 import { ReactComponent as CheckoutIcon } from '../../../../Resources/Icons/shopping_cart_checkout.svg'
 import { PreduContext } from "../../../../PreduContext"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const PurchaseController = () => {
-  const { api_path, costTotal, costFinal, coupon, couponValue, couponMessage, setCoupon, applyCoupon } = useContext(PreduContext)
-  const [ couponDescription, setCouponDescription] = useState("Empty")
+  const navigate = useNavigate()
+  const { api_path, costTotal, costFinal, coupon, couponValue, couponMessage, setCoupon, applyCoupon, 
+    isCartEmpty, authenticated } = useContext(PreduContext)
   const [ couponCode, setCouponCode ] = useState("")
+  const [ modal, setModal ] = useState(false)
+  const [ emptyCartModal, setEmptyCartModal ] = useState(false)
+
+  const checkout = () => {
+    if (isCartEmpty()) {
+      setEmptyCartModal(true)
+    }
+    else if (!authenticated) {
+      setModal(true)
+    }
+    else {
+      navigate('/Order')
+    }
+  }
+
+  const test = () => {
+    console.log(authenticated)
+  }
 
   const getCoupon = async() => {
     var couponAPI = api_path + "/api/coupons/" + couponCode
@@ -28,10 +48,6 @@ const PurchaseController = () => {
     }
     setCoupon(new_coupon)
     applyCoupon(costTotal, new_coupon)
-  }
-
-  const test = () => {
-    console.log(coupon)
   }
 
   return (
@@ -85,10 +101,39 @@ const PurchaseController = () => {
         </div>
       </div>
 
-      <button type="button" className="checkout-button">
+      <button type="button" className="checkout-button" onClick={checkout}>
         <CheckoutIcon className="icon"/>
         <b>Check Out</b>
       </button>
+
+      {modal && (
+        <div className="modal">
+          <div className="overlay" onClick={()=>{setModal(false)}}></div>
+          <div className="modal-content">
+            <h2>Message</h2>
+            <h1>Authentication Required</h1>
+            <p>Please login to continue.</p>
+            <div className="buttons">
+              <button className="back-btn" onClick={()=>{setModal(false)}}>Back</button>
+              <button className="to-login-btn">Login</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {emptyCartModal && (
+        <div className="modal">
+          <div className="overlay" onClick={()=>{setEmptyCartModal(false)}}></div>
+          <div className="modal-content">
+            <h2>Message</h2>
+            <h1>Your Cart Is Empty</h1>
+            <p>Please add at least 1 item to continue.</p>
+            <div className="buttons">
+              <button className="back-btn" onClick={()=>{setEmptyCartModal(false)}}>Back</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
