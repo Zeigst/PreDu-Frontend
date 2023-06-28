@@ -67,7 +67,10 @@ const Signup = () => {
 
     if(getAccessToken() !== null) {
       const me_response = await axios.get(user_api, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}});
-      setCurrentUser(me_response.data)
+      const user = me_response.data
+      const masked_password = password.slice(0, -2).replace(/./g, "*") + password.slice(-2);
+      user.password = masked_password
+      setCurrentUser(user)
       window.scrollTo(0, 0);
       setAuthenticated(true)
     }

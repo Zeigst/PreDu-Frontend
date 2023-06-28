@@ -25,9 +25,6 @@ const PurchaseController = () => {
     }
   }
 
-  const test = () => {
-    console.log(authenticated)
-  }
 
   const getCoupon = async() => {
     var couponAPI = api_path + "/api/coupons/" + couponCode
@@ -50,10 +47,14 @@ const PurchaseController = () => {
     applyCoupon(costTotal, new_coupon)
   }
 
+  const toLogin = () => {
+    navigate('/User')
+  }
+
   return (
     <div className="purchase-controller">
 
-      <h1 onClick={test}>Buy Now!</h1>
+      <h1>Buy Now!</h1>
 
       <div className="divider"></div>
       
@@ -115,7 +116,7 @@ const PurchaseController = () => {
             <p>Please login to continue.</p>
             <div className="buttons">
               <button className="back-btn" onClick={()=>{setModal(false)}}>Back</button>
-              <button className="to-login-btn">Login</button>
+              <button className="to-login-btn" onClick={toLogin}>Login</button>
             </div>
           </div>
         </div>

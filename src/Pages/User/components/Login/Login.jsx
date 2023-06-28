@@ -44,7 +44,11 @@ const Login = () => {
 
     if(getAccessToken() !== null) {
       const me_response = await axios.get(profile_api_path, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}});
-      setCurrentUser(me_response.data)
+      const user = me_response.data
+      const masked_password = password.slice(0, -2).replace(/./g, "*") + password.slice(-2);
+      user.password = masked_password
+      setCurrentUser(user)
+
       if (me_response.data.role === "admin") {
         window.scrollTo(0, 0);
         setAuthenticated(true)

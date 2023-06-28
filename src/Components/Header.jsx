@@ -83,7 +83,7 @@ const Header = () => {
 
       <div className={`container ${isOpen ? "" : "open"}`}>
         
-        <button className="account-button-responsive" type="button">
+        <button className="account-button-responsive" type="button" onClick={toUser}>
           <AccountCircleIcon className="icon"/>
         </button>
         
