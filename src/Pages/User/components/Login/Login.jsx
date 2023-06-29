@@ -37,26 +37,26 @@ const Login = () => {
 
     try {
       const login_response = await axios.post(login_api_path, newLogin);
-      Cookies.set('access_token', login_response.data.access_token, { secure: true, sameSite: 'strict' });
+
+      if (login_response.status === 200) {
+        Cookies.set('access_token', login_response.data.access_token, { secure: true, sameSite: 'strict' });
+        const me_response = await axios.get(profile_api_path, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}});
+        const user = me_response.data
+        const masked_password = password.slice(0, -2).replace(/./g, "*") + password.slice(-2);
+        user.password = masked_password
+        setCurrentUser(user)
+  
+        if (me_response.data.role === "admin") {
+          window.scrollTo(0, 0);
+          setAuthenticated(true)
+          navigate('/Admin')
+        }
+        else {
+          setAuthenticated(true)
+        }
+      }
     } catch(e) {
-      console.log(e)
-    }
-
-    if(getAccessToken() !== null) {
-      const me_response = await axios.get(profile_api_path, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}});
-      const user = me_response.data
-      const masked_password = password.slice(0, -2).replace(/./g, "*") + password.slice(-2);
-      user.password = masked_password
-      setCurrentUser(user)
-
-      if (me_response.data.role === "admin") {
-        window.scrollTo(0, 0);
-        setAuthenticated(true)
-        navigate('/Admin')
-      }
-      else {
-        setAuthenticated(true)
-      }
+      window.alert(e.response.data.detail)
     }
     
   }

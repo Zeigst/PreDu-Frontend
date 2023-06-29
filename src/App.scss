@@ -11,6 +11,7 @@ $template-colors: (
   "color4": rgb(107, 114, 142),
   "orange": rgb(224, 165, 0),
   "green": rgb(0, 217, 0),
+  "green2": rgb(0, 168, 0)
 );
 
 $grid-breakpoints: (
@@ -83,4 +84,5 @@ main {
 @import './Pages/Shop/shop';
 @import './Pages/Cart/cart';
 @import './Pages/User/user';
+@import './Pages/Order/order';
 

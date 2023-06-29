@@ -7,7 +7,7 @@ const ShopList = () => {
   // const [title, setTitle] = useState("All")
   return (
     <div className="shop-list">
-      <h3 className="shop-list_title">Category - {selectCategory}</h3>
+      <h3 className="shop-list_title">{selectCategory}</h3>
       <div className="shop-list_products">
         {shop.map((product) => {
           if (productSearchQuery !== "") {

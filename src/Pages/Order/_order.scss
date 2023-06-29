@@ -1,0 +1,108 @@
+.order {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    background-color: white;
+    margin-top: 20px;
+    width: max(375px, 40vw);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    border: 3px solid orange;
+    overflow: hidden;
+
+    h1 {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      padding: 20px;
+    }
+
+    .seperator {
+      width: 100%;
+      border-bottom: 3px solid orange;
+    }
+
+    h2 {
+      width: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      justify-self: left;
+      padding: 10px;
+    }
+
+    .user-info, .coupon-info {
+      width: 100%;
+      border-collapse: collapse;
+      
+      th, td {
+        text-align: left;
+        width: 50%;
+        padding: 5px 20px;
+        font-size: calc(14px + 0.3vw);
+      }
+    }
+
+    .order-details {
+      width: 100%;
+      border-collapse: collapse;
+      
+      th, td {
+        text-align: right;
+        width: 33%;
+        padding: 5px 20px;
+        font-size: calc(14px + 0.3vw);
+        border: 2px solid black;
+
+        &.product-name {
+          text-align: left;
+        }
+      }
+
+      th {
+        background-color: orange;
+        text-align: center;
+
+        &.total-left {
+          border-right: none;
+          text-align: left;
+        }
+
+        &.total-right {
+          border-left: none;
+          text-align: right;
+        }
+      }
+    }
+
+    .coupon-info {
+      td {
+        text-align: right;
+      }
+    }
+
+    .final {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      font-size: calc(10px + 0.2vw);
+    }
+
+    .buy-btn {
+      border-radius: 10px;
+      background-color: map-get($map: $template-colors, $key: "green2");
+      border: map-get($map: $template-colors, $key: "green");
+      padding: 20px;
+      width: 50%;
+      color: white;
+      font-size: calc(14px + 0.3vw);
+      font-weight: bold;
+      cursor: pointer;
+      margin: 20px;
+
+      &:hover {
+        background-color: green;
+      }
+    }
+  }
+}

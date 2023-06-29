@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import { product_database } from "./Data";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export const PreduContext = createContext(null);
 
@@ -55,6 +56,16 @@ export const PreduContextProvider = (props) => {
       newMenuState.push(false)
     }
     setMenuState(newMenuState)
+
+    if (Cookies.get('access_token')) {
+      const profile_api_path = api_path + "/api/auth/me"
+      const me_response = await axios.get(profile_api_path, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}});
+      const user = me_response.data
+      const masked_password = "********";
+      user.password = masked_password
+      setCurrentUser(user)
+      setAuthenticated(true)
+    }
   }
   
   useEffect(() => {

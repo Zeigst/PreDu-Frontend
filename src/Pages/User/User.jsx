@@ -5,7 +5,7 @@ import Profile from "./components/Profile/Profile"
 import Signup from "./components/Signup/Signup"
 
 const User = () => {
-  const { authenticated, onSignupPage } = useContext(PreduContext)
+  const { authenticated, currentUser, onSignupPage } = useContext(PreduContext)
   
   if (authenticated) {
     return <Profile/>
