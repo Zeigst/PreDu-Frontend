@@ -12,7 +12,8 @@ const Login = () => {
   const [ username, setUsername ] = useState("")
   const [ password, setPassword ] = useState("")
 
-  const { api_path, getAccessToken, setOnSignupPage, currentUser, setCurrentUser, setAuthenticated, categoryMenuStatus, changeCategoryMenuStatus } = useContext(PreduContext)
+  const { api_path, getAccessToken, setOnSignupPage, currentUser, setCurrentUser, setAuthenticated, 
+    categoryMenuStatus, changeCategoryMenuStatus, getOrdersHistory } = useContext(PreduContext)
 
   function toHome() {
     window.scrollTo(0, 0);
@@ -53,6 +54,7 @@ const Login = () => {
         }
         else {
           setAuthenticated(true)
+          getOrdersHistory()
         }
       }
     } catch(e) {
@@ -94,7 +96,6 @@ const Login = () => {
 
           <button onClick={handleLogin}>
             Sign In
-            <LoginIcon className="button_icon"/>
           </button>
 
           <div className="to-signup-text">

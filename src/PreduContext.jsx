@@ -113,6 +113,15 @@ export const PreduContextProvider = (props) => {
     updateProductSearchQuery(user_input);
   }
 
+  // ===== ORDERS ===== //
+  const [ ordersHistory, setOrdersHistory ] = useState([])
+  
+  const getOrdersHistory = async() => {
+    const orders_api = api_path + "/api/orders/" + String(currentUser.id)
+    const response = await axios.get(orders_api, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+    console.log(response)
+  }
+
 
   // ===== COUPON ===== //
   
@@ -213,6 +222,24 @@ export const PreduContextProvider = (props) => {
     return cartEmpty
   }
 
+  const reset = () => {
+    const new_cart = {}
+    for (let i=0; i<shop.length; i++) {
+      new_cart[shop[i]["id"]] = 0
+    }
+    updateCart(new_cart);
+    setCoupon({
+      "code": "",
+      "min_order_required": 0,
+      "max_discount_applicable": 0
+    })
+    setCouponValue(0)
+    updateCostFinal(0)
+    updateCostTotal(0)
+    updateNumCartItems(0)
+    setCouponMessage("No Coupon Applied")
+    getOrdersHistory()
+  }
 
   const contextValue = { 
     api_path, getAccessToken,
@@ -226,6 +253,8 @@ export const PreduContextProvider = (props) => {
     selectCategory, changeSelectCategory,
     productSearchQuery, searchProduct,
     menuState, setMenuState,
+    ordersHistory, getOrdersHistory,
+    reset
   }
   return (
     <PreduContext.Provider value={contextValue}>

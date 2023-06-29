@@ -82,19 +82,14 @@
         justify-content: center;
         align-items: center;
         border-radius: 10px;
-        position: relative;
         cursor: pointer;
         background-color: rgb(0, 168, 0);
         color: white;
         border: none;
         font-size: calc(18px + 0.390625vw);
 
-        .button_icon {
-          fill: white;
-          position: absolute;
-          top: 50%;
-          right: 0;
-          transform: translateY(-50%);
+        &:hover {
+          background-color: green;
         }
 
       }

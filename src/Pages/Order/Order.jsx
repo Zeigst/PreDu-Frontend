@@ -1,10 +1,14 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { PreduContext } from "../../PreduContext"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const Order = () => {
-  const { api_path, getAccessToken, currentUser, shop, cart, costTotal, costFinal, coupon, couponValue } = useContext(PreduContext)
-  
+  const navigate = useNavigate()
+  const { api_path, getAccessToken, currentUser, shop, cart, costTotal, costFinal, coupon, couponValue, reset } = useContext(PreduContext)
+  const [ orderSuccessModal, setOrderSuccessModal ] = useState(false)
+
+
   const makeOrder = async() => {
     const order_api = api_path + "/api/orders/"
     const newOrder = {
@@ -14,10 +18,18 @@ const Order = () => {
 
     try {
       const response = await axios.post(order_api, newOrder, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
-      console.log(response)
+      if (response.status === 200) {
+        setOrderSuccessModal(true)
+      }
     } catch(e) {
-      console.log(e)
+      window.alert(e.response.data.message)
     }
+  }
+
+  const closeModal = () => {
+    reset()
+    setOrderSuccessModal(false)
+    navigate('/User')
   }
   
   return (
@@ -106,6 +118,19 @@ const Order = () => {
         <button className="buy-btn" onClick={makeOrder}>ORDER NOW</button>
       </div>
 
+      {orderSuccessModal && (
+        <div className="modal">
+          <div className="overlay" onClick={closeModal}></div>
+          <div className="modal-content">
+            <h2>Message</h2>
+            <h1>Order Successful</h1>
+            <p>Your order is now being processed.</p>
+            <div className="buttons">
+              <button className="ok-btn" onClick={closeModal}>OK</button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
