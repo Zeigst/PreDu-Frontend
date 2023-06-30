@@ -24,10 +24,14 @@ const CartList = () => {
         <table>
           <thead>
             <tr className="table-header">
-              <th colSpan="3" style={{width: "32%"}}>PRODUCT</th>
-              <th style={{width: "20%"}}>COST</th>
-              <th style={{width: "15%"}}>QUANTITY</th>
-              <th colSpan="2" style={{width: "33%"}}>TOTAL</th>
+              <th colSpan="3" >PRODUCT</th>
+              <th >COST</th>
+              <th >QUANTITY</th>
+              <th >TOTAL</th>
+              <th></th>
+            </tr>
+            <tr className="table-header-responsive">
+              <th colSpan={7}>YOUR CART</th>
             </tr>
           </thead>
           
@@ -44,8 +48,12 @@ const CartList = () => {
       <CartEmpty numCartItems={numCartItems}/>
 
       <div className="table-footer">
-        <h2>Your Cart: {numCartItems}</h2>
-        <h2>Total: {costTotal.toLocaleString("en-US")} VND</h2>
+        <h2>Items: {numCartItems}</h2>
+        <h2>Your Cart: {costTotal.toLocaleString("en-US")} VND</h2>
+      </div>
+      <div className="table-footer responsive">
+        <h2>TOTAL:</h2>
+        <h2>{costTotal.toLocaleString("en-US")} VND</h2>
       </div>
     </div>
   )

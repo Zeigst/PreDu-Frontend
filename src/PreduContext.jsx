@@ -8,7 +8,7 @@ export const PreduContext = createContext(null);
 
 export const PreduContextProvider = (props) => {
 
-  const api_path = "http://127.0.0.1:8000"
+  const api_path = "http://10.18.0.75:8000"
 
   const [authenticated, setAuthenticated] = useState(false)
   const [onSignupPage, setOnSignupPage] = useState(false)
@@ -65,6 +65,8 @@ export const PreduContextProvider = (props) => {
       user.password = masked_password
       setCurrentUser(user)
       setAuthenticated(true)
+      
+      getOrderHistory()
     }
   }
   
@@ -114,12 +116,12 @@ export const PreduContextProvider = (props) => {
   }
 
   // ===== ORDERS ===== //
-  const [ ordersHistory, setOrdersHistory ] = useState([])
+  const [ orderHistory, setOrderHistory ] = useState([])
   
-  const getOrdersHistory = async() => {
-    const orders_api = api_path + "/api/orders/" + String(currentUser.id)
+  const getOrderHistory = async() => {
+    const orders_api = api_path + "/api/orders/"
     const response = await axios.get(orders_api, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
-    console.log(response)
+    setOrderHistory(response.data)
   }
 
 
@@ -238,7 +240,7 @@ export const PreduContextProvider = (props) => {
     updateCostTotal(0)
     updateNumCartItems(0)
     setCouponMessage("No Coupon Applied")
-    getOrdersHistory()
+    getOrderHistory()
   }
 
   const contextValue = { 
@@ -253,7 +255,7 @@ export const PreduContextProvider = (props) => {
     selectCategory, changeSelectCategory,
     productSearchQuery, searchProduct,
     menuState, setMenuState,
-    ordersHistory, getOrdersHistory,
+    orderHistory, getOrderHistory,
     reset
   }
   return (

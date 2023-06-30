@@ -13,7 +13,7 @@ const Login = () => {
   const [ password, setPassword ] = useState("")
 
   const { api_path, getAccessToken, setOnSignupPage, currentUser, setCurrentUser, setAuthenticated, 
-    categoryMenuStatus, changeCategoryMenuStatus, getOrdersHistory } = useContext(PreduContext)
+    categoryMenuStatus, changeCategoryMenuStatus, getOrderHistory } = useContext(PreduContext)
 
   function toHome() {
     window.scrollTo(0, 0);
@@ -40,24 +40,31 @@ const Login = () => {
       const login_response = await axios.post(login_api_path, newLogin);
 
       if (login_response.status === 200) {
-        Cookies.set('access_token', login_response.data.access_token, { secure: true, sameSite: 'strict' });
-        const me_response = await axios.get(profile_api_path, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}});
-        const user = me_response.data
-        const masked_password = password.slice(0, -2).replace(/./g, "*") + password.slice(-2);
-        user.password = masked_password
-        setCurrentUser(user)
-  
-        if (me_response.data.role === "admin") {
-          window.scrollTo(0, 0);
-          setAuthenticated(true)
-          navigate('/Admin')
+        Cookies.set('access_token', login_response.data.access_token); //{ secure: true, sameSite: 'strict' });
+        try {
+          const me_response = await axios.get(profile_api_path, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}});
+          const user = me_response.data
+          const masked_password = password.slice(0, -2).replace(/./g, "*") + password.slice(-2);
+          user.password = masked_password
+          setCurrentUser(user)
+    
+          if (me_response.data.role === "admin") {
+            window.scrollTo(0, 0);
+            setAuthenticated(true)
+            navigate('/Admin')
+          }
+          else {
+            setAuthenticated(true)
+            getOrderHistory()
+          }
+        } catch(e) {
+          console.log(e)
+          window.alert(e.response.data.detail)
         }
-        else {
-          setAuthenticated(true)
-          getOrdersHistory()
-        }
+        
       }
     } catch(e) {
+      console.log(e)
       window.alert(e.response.data.detail)
     }
     
@@ -87,7 +94,7 @@ const Login = () => {
               </tr>
               <tr>
                 <td>
-                  <input type="password" name="signin_password" id="signin_password" 
+                  <input type="text" name="signin_password" id="signin_password" 
                     onChange={(e)=>setPassword(e.target.value)} value={password}/>
                 </td>
               </tr>

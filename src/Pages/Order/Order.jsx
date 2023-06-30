@@ -69,17 +69,17 @@ const Order = () => {
         <table className="order-details">
           <tbody>
             <tr>
-              <th>Product</th>
-              <th>Quantity</th>
-              <th>Cost</th>
+              <th className="product-name">Product</th>
+              <th className="product-quantity">Quantity</th>
+              <th className="product-cost">Cost</th>
             </tr>
             {shop.map((product) => {
                 if (cart[product.id] !== 0) {
                   return (
                     <tr key={product.name}>
                       <td className="product-name">{product.name}</td>
-                      <td>{cart[product.id]}</td>
-                      <td>{(product.cost_per_unit * cart[product.id]).toLocaleString("en-US")} VND</td>
+                      <td className="product-quantity">{cart[product.id]}</td>
+                      <td className="product-cost">{(product.cost_per_unit * cart[product.id]).toLocaleString("en-US")} VND</td>
                     </tr>
                   )
                 }

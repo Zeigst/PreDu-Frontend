@@ -49,14 +49,10 @@
       
       th, td {
         text-align: right;
-        width: 33%;
         padding: 5px 20px;
         font-size: calc(14px + 0.3vw);
         border: 2px solid black;
 
-        &.product-name {
-          text-align: left;
-        }
       }
 
       th {
@@ -72,6 +68,15 @@
           border-left: none;
           text-align: right;
         }
+
+        &.product-name, &.product-cost {
+          width: 40%;
+        }
+
+      }
+
+      td.product-name {
+        text-align: left;
       }
     }
 

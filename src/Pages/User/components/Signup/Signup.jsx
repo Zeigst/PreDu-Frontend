@@ -56,7 +56,7 @@ const Signup = () => {
         
         try {
           const login_response = await axios.post(login_api, new_login);
-          Cookies.set('access_token', login_response.data.access_token, { secure: true, sameSite: 'strict' });
+          Cookies.set('access_token', login_response.data.access_token);
         } catch(e) {
           console.log(e)
         }
