@@ -33,7 +33,7 @@ const PurchaseController = () => {
       setCoupon(response.data)
       applyCoupon(costTotal, response.data)
     } catch(e) {
-      console.log(e)
+      window.alert(e.response.data.detail)
     }
   }
 

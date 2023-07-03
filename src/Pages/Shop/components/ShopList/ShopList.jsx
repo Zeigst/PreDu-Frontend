@@ -3,11 +3,19 @@ import { PreduContext } from "../../../../PreduContext"
 import ShopProduct from "../ShopProduct/ShopProduct"
 
 const ShopList = () => {
-  const { shop, selectCategory, productSearchQuery} = useContext(PreduContext);
+  const { shop, selectCategory, selectBrand, productSearchQuery} = useContext(PreduContext);
   // const [title, setTitle] = useState("All")
   return (
     <div className="shop-list">
-      <h3 className="shop-list_title">{selectCategory}</h3>
+      <h3 className="shop-list_title">
+        {productSearchQuery === "" && selectBrand === "all" && selectCategory === "all" ? (
+          "All Products"
+        ) : productSearchQuery === "" ? (
+          `Filter: ${selectCategory} - ${selectBrand}`
+        ) : (
+          <span className="search-title">Search: {productSearchQuery}</span>
+        )}
+      </h3>
       <div className="shop-list_products">
         {shop.map((product) => {
           if (productSearchQuery !== "") {
@@ -19,11 +27,11 @@ const ShopList = () => {
               }
           }
           else{
-            if (selectCategory === "all") {
+            if (selectCategory === "all" && selectBrand === "all") {
               return <ShopProduct data={product} key={product.id}/>
             }
             else {
-              if (selectCategory === product.brand) {
+              if (selectCategory === product.category && selectBrand === product.brand) {
                 return <ShopProduct data={product} key={product.id}/>
               }
             }

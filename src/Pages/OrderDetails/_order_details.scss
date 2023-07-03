@@ -1,4 +1,4 @@
-.order {
+.order-details {
   display: flex;
   justify-content: center;
 
@@ -31,7 +31,27 @@
       padding: 10px;
     }
 
-    .user-info, .coupon-info {
+    .status {
+      text-transform: uppercase;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-weight: 600;
+
+      &.processing {
+        color: rgb(255, 170, 0);
+      }
+      &.canceled {
+        color: red;
+      }
+      &.completed {
+        color: green;
+      }
+    }
+
+    .id {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .user-info, .order-status {
       width: 100%;
       border-collapse: collapse;
       
@@ -49,6 +69,8 @@
       td {
         width: 60%;
       }
+
+
     }
 
     .order-info {
@@ -116,7 +138,24 @@
       }
     }
 
-    .buy-btn {
+    .cancel-btn {
+      border-radius: 10px;
+      background-color: red;
+      border: map-get($map: $template-colors, $key: "green");
+      padding: 20px;
+      width: 50%;
+      color: white;
+      font-size: calc(14px + 0.3vw);
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+
+      &:hover {
+        background-color: rgb(194, 0, 0);
+      }
+    }
+
+    .back-btn {
       border-radius: 10px;
       background-color: map-get($map: $template-colors, $key: "green2");
       border: map-get($map: $template-colors, $key: "green");

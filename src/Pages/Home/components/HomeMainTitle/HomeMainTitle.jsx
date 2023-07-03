@@ -1,8 +1,10 @@
 import React from "react"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomeMainTitle = () => {
   const [hacktext, setHackText] = useState("ACCOUNTS");
+  const navigate = useNavigate()
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const text1 = "SERVICES";
   const text2 = "ACCOUNTS";
@@ -43,6 +45,11 @@ const HomeMainTitle = () => {
     }, 30)
   }
 
+  function toShop() {
+    window.scrollTo(0, 0)
+    navigate('/Shop')
+  }
+
 
   return (
     <div className="home-main-title">
@@ -51,7 +58,7 @@ const HomeMainTitle = () => {
         <h1 className="hack-text" onMouseOver={mouseOverHack} onMouseLeave={mouseLeaveHack}>{hacktext}</h1>
       </div>
 
-      <button>Get Started</button>
+      <button onClick={toShop}>Get Started</button>
     </div>
   )
 }

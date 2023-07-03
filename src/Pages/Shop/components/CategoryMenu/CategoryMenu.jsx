@@ -7,7 +7,7 @@ import { ReactComponent as ArrowCircleRightIcon } from "../../../../Resources/Ic
 import { education_categories, entertainment_categories, office_categories } from "../../../../Data";
 
 const CategoryMenu = () => {
-  const { categories, categoryMenuStatus, changeSelectCategory, searchProduct, menuState, setMenuState } = useContext(PreduContext)
+  const { categories, categoryMenuStatus, changeSelectFilter, searchProduct, menuState, setMenuState } = useContext(PreduContext)
   const [ userSearchInput, setUserSearchInput] = useState("")
 
   function handleMenuState(position) {
@@ -39,6 +39,10 @@ const CategoryMenu = () => {
     }
   })
 
+  const selectAll = () => {
+    changeSelectFilter("all", "all")
+  }
+
   return (
     <div className={`category-menu ${categoryMenuStatus ? "open" : ""}`}>
       
@@ -51,7 +55,7 @@ const CategoryMenu = () => {
       </form>
       <h3>Shop Categories</h3>
       <div className="category-list">
-        <div className="category-all-button" onClick={()=>{changeSelectCategory("all")}}>
+        <div className="category-all-button" onClick={selectAll}>
           <h4>ALL</h4>
           <ArrowCircleRightIcon className="icon"/>
         </div>
@@ -64,7 +68,7 @@ const CategoryMenu = () => {
             </div>
             <ul className={`menu ${menuState[categories.indexOf(category)] ? "open" : ""}`}>
               {category.brands.map((brand) => (
-                <li className="category-item" key={brand} onClick={()=>{changeSelectCategory(brand)}}>
+                <li className="category-item" key={brand} onClick={()=>{changeSelectFilter(category.name, brand)}}>
                   <h5>{brand}</h5>
                 </li>
               ))}

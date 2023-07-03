@@ -1,6 +1,6 @@
-.order-history {
+.coupon-history {
   width: 90%;
-  height: 500px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -11,7 +11,7 @@
     display: none;
   }
 
-  .order-list {
+  .coupon-list {
     min-width: 100%;
     border-collapse: collapse;
     text-align: center;
@@ -20,6 +20,7 @@
       border-radius: 5px;
       position: sticky;
       top: 0;
+      left: 0;
     }
 
     th {
@@ -35,32 +36,7 @@
       font-size: calc(16px + 0.3vw);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       white-space: nowrap;
-      padding: 5px 10px;
-      &.status {
-        text-transform: uppercase;
-
-        &.processing {
-          color: rgb(255, 170, 0);
-        }
-        &.canceled {
-          color: red;
-        }
-        &.completed {
-          color: green;
-        }
-      }
-
-      button {
-        background: none;
-        border: none;
-        outline: none;
-        cursor: pointer;
-      }
-
-      .icon {
-        width: calc(18px + 0.3vw);
-        height: calc(18px + 0.3vw);
-      }
+      padding: 5px;
     }
   }
 }

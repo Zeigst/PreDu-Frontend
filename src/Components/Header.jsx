@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { PreduContext } from '../PreduContext';
 import { ReactComponent as AccountCircleIcon } from '../Resources/Icons/account_circle.svg';
@@ -10,6 +10,7 @@ import { ReactComponent as CategoryMenuIcon } from '../Resources/Icons/keyboard_
 
 const Header = () => {
   let navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setOpen] = useState("false");
   const {categoryMenuStatus, changeCategoryMenuStatus, numCartItems} = useContext(PreduContext);
 
@@ -117,9 +118,12 @@ const Header = () => {
       </div>
 
       <div className="responsive-buttons">
-        <button className={`category-menu-button ${categoryMenuStatus ? "open" : ""}`} onClick={changeCategoryMenuStatus} type="button">
-          <CategoryMenuIcon className="icon"/>
-        </button>
+        {(location.pathname === '/Shop') && (
+          <button className={`category-menu-button ${categoryMenuStatus ? "open" : ""}`} onClick={changeCategoryMenuStatus} type="button">
+            <CategoryMenuIcon className="icon"/>
+          </button>
+        )}
+
         <button className={`menu-button ${isOpen ? "" : "open"}`} onClick={toggleMenu} type="button">
           <MenuIcon className="menu-icon"/>
           <CloseIcon className="close-icon"/>

@@ -12,8 +12,8 @@ const Login = () => {
   const [ username, setUsername ] = useState("")
   const [ password, setPassword ] = useState("")
 
-  const { api_path, getAccessToken, setOnSignupPage, currentUser, setCurrentUser, setAuthenticated, 
-    categoryMenuStatus, changeCategoryMenuStatus, getOrderHistory } = useContext(PreduContext)
+  const { api_path, getAccessToken, setOnSignupPage, setCurrentUser, setAuthenticated, 
+    categoryMenuStatus, changeCategoryMenuStatus, getOrderHistory, getUsedCoupons } = useContext(PreduContext)
 
   function toHome() {
     window.scrollTo(0, 0);
@@ -56,6 +56,7 @@ const Login = () => {
           else {
             setAuthenticated(true)
             getOrderHistory()
+            getUsedCoupons()
           }
         } catch(e) {
           console.log(e)
@@ -94,7 +95,7 @@ const Login = () => {
               </tr>
               <tr>
                 <td>
-                  <input type="text" name="signin_password" id="signin_password" 
+                  <input type="password" name="signin_password" id="signin_password" 
                     onChange={(e)=>setPassword(e.target.value)} value={password}/>
                 </td>
               </tr>

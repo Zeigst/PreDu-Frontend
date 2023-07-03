@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { ReactComponent as MinusIcon } from "../../Resources/Icons/remove.svg"
 import { ReactComponent as PlusIcon } from "../../Resources/Icons/add.svg"
 import { ReactComponent as AddCartIcon } from "../../Resources/Icons/add_shopping_cart.svg"
+import { ReactComponent as UndoIcon } from "../../Resources/Icons/undo.svg"
 import { PreduContext } from "../../PreduContext"
 
 
@@ -10,6 +11,7 @@ import { PreduContext } from "../../PreduContext"
 
 const Product = () => {
   const location = useLocation()
+  const navigate = useNavigate()
 
   let id= location.state.id
   let name = location.state.name
@@ -49,6 +51,11 @@ const Product = () => {
       setQuantity(0)
     }
     setQuantity(parseInt(quantity) + 1)
+  }
+
+  const toShop = () => {
+    window.scrollTo(0, 0)
+    navigate("/Shop")
   }
 
 
@@ -96,10 +103,16 @@ const Product = () => {
             <button onClick={plus}><PlusIcon className="icon"/></button>
           </div>
 
-          <button className="add-cart" onClick={() => {setCartProductQuantity(id, quantity)}}>
-            <AddCartIcon className="icon"/>
-            ADD TO CART
-          </button>
+          <div className="buttons">
+            <button className="back-btn" onClick={toShop}>
+              <UndoIcon className="icon"/>
+              SHOP
+            </button>
+            <button className="cart-btn" onClick={() => {setCartProductQuantity(id, quantity)}}>
+              <AddCartIcon className="icon"/>
+              CART
+            </button>
+          </div>
         </div>
 
         

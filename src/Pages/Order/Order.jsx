@@ -7,6 +7,7 @@ const Order = () => {
   const navigate = useNavigate()
   const { api_path, getAccessToken, currentUser, shop, cart, costTotal, costFinal, coupon, couponValue, reset } = useContext(PreduContext)
   const [ orderSuccessModal, setOrderSuccessModal ] = useState(false)
+  const [ newOrderId, setNewOrderId ] = useState(0)
 
 
   const makeOrder = async() => {
@@ -19,6 +20,7 @@ const Order = () => {
     try {
       const response = await axios.post(order_api, newOrder, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
       if (response.status === 200) {
+        setNewOrderId(response.data.order_id)
         setOrderSuccessModal(true)
       }
     } catch(e) {
@@ -26,10 +28,20 @@ const Order = () => {
     }
   }
 
-  const closeModal = () => {
+  const closeModal = async() => {
     reset()
     setOrderSuccessModal(false)
-    navigate('/User')
+    try {
+      const order_api = api_path + "/api/orders/" + String(newOrderId)
+      const order_response = await axios.get(order_api, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+      navigate('/OrderDetails', {
+        state : {
+          order: order_response.data
+        }
+      })
+    }catch(e){
+      window.alert(e.response.data.detail)
+    }
   }
   
   return (
@@ -64,9 +76,9 @@ const Order = () => {
         
         <div className="seperator"></div>
 
-        <h2>Order Details</h2>
+        <h2>Products</h2>
 
-        <table className="order-details">
+        <table className="order-info">
           <tbody>
             <tr>
               <th className="product-name">Product</th>

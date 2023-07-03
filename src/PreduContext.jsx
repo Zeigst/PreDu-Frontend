@@ -1,14 +1,12 @@
 import React, { createContext, useState, useEffect } from "react";
-import { product_database } from "./Data";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 
 export const PreduContext = createContext(null);
 
 export const PreduContextProvider = (props) => {
 
-  const api_path = "http://10.18.0.75:8000"
+  const api_path = process.env.REACT_APP_API_URL
 
   const [authenticated, setAuthenticated] = useState(false)
   const [onSignupPage, setOnSignupPage] = useState(false)
@@ -67,12 +65,14 @@ export const PreduContextProvider = (props) => {
       setAuthenticated(true)
       
       getOrderHistory()
+      getUsedCoupons()
     }
   }
   
   useEffect(() => {
     getInitialShopData();
   }, []);
+
 
   // ====== Access Token ===== //
   const getAccessToken = () => {
@@ -97,14 +97,16 @@ export const PreduContextProvider = (props) => {
   }
 
   const [selectCategory, updateSelectCategory] = useState("all")
+  const [selectBrand, updateSelectBrand] = useState("all")
 
-  const changeSelectCategory = (new_category) => {
+  const changeSelectFilter = (new_category, new_brand) => {
     window.scrollTo(0, 0);
     if (categoryMenuStatus) {
       changeCategoryMenuStatus();
     }
     updateProductSearchQuery("")
     updateSelectCategory(new_category);
+    updateSelectBrand(new_brand)
   }
 
   const searchProduct = (user_input) => {
@@ -113,13 +115,17 @@ export const PreduContextProvider = (props) => {
       changeCategoryMenuStatus();
     }
     updateProductSearchQuery(user_input);
+    if (user_input === "") {
+      updateSelectCategory("all")
+      updateSelectBrand("all")
+    }
   }
 
   // ===== ORDERS ===== //
   const [ orderHistory, setOrderHistory ] = useState([])
   
   const getOrderHistory = async() => {
-    const orders_api = api_path + "/api/orders/"
+    const orders_api = api_path + "/api/users/order-history"
     const response = await axios.get(orders_api, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
     setOrderHistory(response.data)
   }
@@ -177,6 +183,13 @@ export const PreduContextProvider = (props) => {
     updateCostFinal(totalCost - value)
   }
 
+  const [ usedCoupons, setUsedCoupons] = useState([])
+
+  const getUsedCoupons = async() => {
+    const used_coupon_api = api_path + "/api/users/coupon-history";
+    const response = await axios.get(used_coupon_api, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+    setUsedCoupons(response.data)
+  }
 
   // ===== Cart ===== //
   const [costTotal, updateCostTotal] = useState(0)
@@ -250,9 +263,9 @@ export const PreduContextProvider = (props) => {
     onSignupPage, setOnSignupPage,
     categories,
     shop, cart, numCartItems, costTotal, costFinal, setCartProductQuantity, isCartEmpty,
-    coupon, couponValue, couponMessage, setCoupon, applyCoupon,
+    coupon, couponValue, couponMessage, setCoupon, applyCoupon, usedCoupons, getUsedCoupons,
     categoryMenuStatus, changeCategoryMenuStatus, 
-    selectCategory, changeSelectCategory,
+    selectCategory, selectBrand, changeSelectFilter,
     productSearchQuery, searchProduct,
     menuState, setMenuState,
     orderHistory, getOrderHistory,

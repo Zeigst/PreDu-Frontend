@@ -39,6 +39,7 @@ const ShopProduct = (props) => {
   }
 
   const toProductDetails = () => {
+    window.scrollTo(0, 0)
     navigate('/Product', {
       state : {
           id: id,

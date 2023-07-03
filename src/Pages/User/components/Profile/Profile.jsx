@@ -1,18 +1,20 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { ReactComponent as RefreshIcon } from "../../../../Resources/Icons/refresh.svg"
-import Cookies from "js-cookie"
-
 
 import { PreduContext } from "../../../../PreduContext"
 import Header from "../../../../Components/Header"
 import Footer from "../../../../Components/Footer"
 import AccountDetails from "./components/AccountDetails/AccountDetails"
 import OrderHistory from "./components/OrderHistory/OrderHistory"
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import CouponHistory from "./components/CouponHistory/CouponHistory"
 
 const Profile = () => {
-  const { getOrderHistory } = useContext(PreduContext)
+  const { getOrderHistory , getUsedCoupons } = useContext(PreduContext)
+
+  const refresh = () => {
+    getOrderHistory()
+    getUsedCoupons()
+  }
   return (
     <div className="profile">
       <Header/>
@@ -23,13 +25,17 @@ const Profile = () => {
           <div className="line"></div>
         </div>
         <OrderHistory/>
-        <button className="refresh-btn" onClick={()=>{getOrderHistory()}}>
+        <button className="refresh-btn" onClick={refresh}>
           <RefreshIcon className="icon"/>
         </button>
         <div className="seperator">
           <h2>Coupon History</h2>
           <div className="line"></div>
         </div>
+        <CouponHistory/>
+        <button className="refresh-btn" onClick={refresh}>
+          <RefreshIcon className="icon"/>
+        </button>
       </main>
       <Footer/>
     </div>

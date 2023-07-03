@@ -1,27 +1,26 @@
-import React, { useContext, useState } from "react"
+import React, { useContext} from "react"
 import { PreduContext } from "../../../../../../PreduContext"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 
 import { ReactComponent as InfoIcon } from "../../../../../../Resources/Icons/info.svg"
 
 const OrderHistory = () => {
-  const { orderHistory, getOrderHistory } = useContext(PreduContext)
+  const { orderHistory } = useContext(PreduContext)
   const navigate = useNavigate()
 
-  console.log(orderHistory)
 
   function formatDate(dateString) {
     const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Months are zero-based, so we add 1
+    const day = date.getDate().toString().padStart(2, '0'); // Add leading zero if day is a single digit
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if month is a single digit
     const year = date.getFullYear();
   
     return `${day}-${month}-${year}`;
   }
-
+  
   function toOrderDetails(order) {
+    window.scrollTo(0, 0)
     navigate('/OrderDetails', {
       state : {
         order: order
@@ -36,7 +35,9 @@ const OrderHistory = () => {
           <tr className="table-header">
             <th>ID</th>
             <th>Status</th>
+            <th>Cost</th>
             <th>Date</th>
+            <th>Update</th>
             <th></th>
           </tr>
         </thead>
@@ -48,7 +49,9 @@ const OrderHistory = () => {
               <td className={`status ${order.status === "processing" ? "processing" : order.status === "canceled" ? "canceled" : order.status === "completed" ? "completed" : ""}`}>
                 {order.status}
               </td>
+              <td>{order.final_total_cost.toLocaleString("en-US")} VND</td>
               <td>{formatDate(order.created_at)}</td>
+              <td>{formatDate(order.updated_at)}</td>
               <td>
                 <button onClick={()=>{toOrderDetails(order)}}>
                   <InfoIcon className="icon"/>
