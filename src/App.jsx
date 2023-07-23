@@ -13,6 +13,11 @@ import User from './Pages/User/User';
 import Admin from './Pages/Admin/Admin';
 import Order from './Pages/Order/Order';
 import OrderDetails from './Pages/OrderDetails/OrderDetails';
+import AdminHeader from './Pages/Admin/components/AdminHeader/AdminHeader';
+import AdminUsers from './Pages/Admin/components/AdminUsers/AdminUsers';
+import AdminProducts from './Pages/Admin/components/AdminProducts/AdminProducts';
+import AdminCoupons from './Pages/Admin/components/AdminCoupons/AdminCoupons';
+import AdminOrders from './Pages/Admin/components/AdminOrders/AdminOrders';
 
 
 function App() {
@@ -29,7 +34,12 @@ function App() {
             <Route exact path='/Product' element={<><Header/><Product/><Footer/><ChatBot/></>}/>
             <Route exact path='/OrderDetails' element={<><Header/><OrderDetails/><Footer/><ChatBot/></>}/>
             <Route exact path='/User' element={<><User/></>}/>
-            <Route exact path='/Admin' element={<><Admin/></>}/>
+            <Route exact path='/Admin' element={<><AdminHeader/><Admin/></>}/>
+            <Route exact path='/Admin/Users' element={<><AdminHeader/><AdminUsers/></>}/>
+            <Route exact path='/Admin/Products' element={<><AdminHeader/><AdminProducts/></>}/>
+            <Route exact path='/Admin/Coupons' element={<><AdminHeader/><AdminCoupons/></>}/>
+            <Route exact path='/Admin/Orders' element={<><AdminHeader/><AdminOrders/></>}/>
+
 
           </Routes>
         </Router>

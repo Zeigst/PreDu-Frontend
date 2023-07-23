@@ -256,19 +256,36 @@ export const PreduContextProvider = (props) => {
     getOrderHistory()
   }
 
+  // ===== CHATBOT ===== //
+  const [ chatHistory, setChatHistory ] = useState([
+    {
+      message: "Hi there! I'm PreDu ChatBot, here to help you with any questions you may have about PreDu. Is there anything I can help you with?",
+      sender: "PreDu ChatBot",
+      direction: "incoming"
+    }
+  ])
+
+  const addChatMessage = (newMessage) => {
+    setChatHistory(prevHistory => [...prevHistory, newMessage]);
+  };
+
+
+
+
   const contextValue = { 
     api_path, getAccessToken,
     currentUser, setCurrentUser,
     authenticated, setAuthenticated,
     onSignupPage, setOnSignupPage,
-    categories,
-    shop, cart, numCartItems, costTotal, costFinal, setCartProductQuantity, isCartEmpty,
+    categories, updateCategories, brands, updateBrands,
+    shop, cart, numCartItems, costTotal, costFinal, setCartProductQuantity, isCartEmpty, updateShop,
     coupon, couponValue, couponMessage, setCoupon, applyCoupon, usedCoupons, getUsedCoupons,
     categoryMenuStatus, changeCategoryMenuStatus, 
     selectCategory, selectBrand, changeSelectFilter,
     productSearchQuery, searchProduct,
     menuState, setMenuState,
     orderHistory, getOrderHistory,
+    chatHistory, addChatMessage,
     reset
   }
   return (

@@ -1,0 +1,262 @@
+.admin-products {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding-top: calc(100px + 0.390625vw);
+  padding-bottom: 20px;
+
+  .seperator {
+    width: 80vw;
+    height: 1px;
+    border-bottom: 1px solid rgba(white, 0.5);
+  }
+
+  .btns-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    button {
+      padding: calc(5px + 0.5vw) calc(10px + 1vw);
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      background-color: rgb(0, 168, 0);
+      color: white;
+      cursor: pointer;
+      font-size: calc(16px + 0.390625vw);
+      width: min(200px, 40vw);
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background-color: green;
+      }
+
+      .icon {
+        fill: white;
+      }
+    }
+  }
+
+  .categories, .brands, .products {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: max(400px, calc(70vh - 100px - 0.390625vw));
+    overflow: scroll;
+    background-color: white;
+    border-radius: 10px;
+    border: 5px solid orange;
+
+    h1 {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      padding-bottom: 20px;
+    }
+
+    input {
+      background-color: rgba(black, 0.6);
+      padding: 10px;
+      border: 3px solid black;
+      outline: none;
+      color: white;
+      text-align: center;
+      height: 50px;
+      border-radius: 50px;
+      width: max(250px, 50%);
+      font-size: calc(14px + 0.390625vw);
+      margin-bottom: 20px;
+      
+      &::placeholder {
+        color: white;
+      }
+      
+    }
+
+    .table-container {
+      width: 100%;
+      height: 100%;
+      overflow: scroll;
+      border: 2px solid black;
+
+      table {
+        min-width: 100%;
+        border-collapse: collapse;
+
+        button {
+          cursor: pointer;
+          border: none;
+          outline: none;
+          background-color: orange;
+          padding: 5px;
+          border-radius: 5px;
+          .icon {
+            width: calc(20px + 0.1vw);
+            height: calc(20px + 0.1vw);
+            fill: white;
+          }
+
+          &:hover {
+            background-color: green;
+          }
+        }
+
+        tr {
+          border-top: 2px solid black;
+          border-bottom: 2px solid black;
+        }
+
+        th {
+          text-align: center;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          background-color: orange;
+          font-size: calc(12px + 0.3vw);
+          padding: 5px;
+          white-space: nowrap;
+          border: none;
+        }
+
+        tr.table-header {
+          border-radius: 5px;
+          position: sticky;
+          top: 0;
+          background-color: orange;
+        }
+
+        tr:nth-child(odd){
+          background-color: white;
+        }  
+  
+        tr:nth-child(even){
+          background-color: #dee3e5;
+        } 
+
+        td {
+          font-size: calc(13px + 0.3vw);
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          white-space: nowrap;
+          text-align: right;
+          padding: 5px 10px;
+
+          &.left {
+            text-align: left;
+          }
+
+          &.center {
+            text-align: center;
+          }
+
+          &.right {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+
+  .products {
+    height: calc(100vh - 100px - 0.390625vw);
+
+    img {
+      height: 50px;
+      width: 70px;
+    }
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100000;
+
+    .overlay {
+      background-color: rgba(black, 0.5);
+      width: 100%;
+      height: 100%;
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(315deg, rgb(250, 48, 82), rgb(224, 165, 0));
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+
+      h2 {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: calc(14px + 0.390625vw);
+        // color: white;
+        text-transform: capitalize;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: left;
+        gap: 5px;
+        font-size: calc(12px + 0.390625vw);
+        font-weight: 600;
+
+        input {
+          width: 200px;
+          padding: 5px 10px;
+          border-radius: 5px;
+          border: none;
+          outline: none;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          font-size: calc(10px + 0.390625vw);
+        }
+      }
+
+      .buttons-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+
+        button {
+          width: 80%;
+          cursor: pointer;
+          padding: calc(5px + 0.5vw) calc(10px + 1vw);
+          border: none;
+          outline: none;
+          color: white;
+          font-size: calc(12px + 0.390625vw);
+          font-weight: bold;
+          border-radius: 5px;
+
+          &.update {
+            background-color: rgb(0, 168, 0);
+            &:hover {
+              background-color: green;
+            }
+          }
+
+          &.delete {
+            background-color: rgb(210, 0, 0);
+            &:hover {
+              background-color: rgb(183, 0, 0);
+            }
+          }
+        }
+      }
+    }
+  }
+}

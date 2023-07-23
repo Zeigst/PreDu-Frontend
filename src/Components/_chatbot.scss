@@ -57,9 +57,13 @@
 
 @media (max-width: 576px) {
   .chat-bot {
-    align-items: center;
+    align-items: right;
     width: 100%;
     right: 0;
+
+    .chat-button {
+      margin-right: 40px;
+    }
 
     .container {
       width: 100%;
