@@ -56,13 +56,13 @@ const AdminUsers = () => {
 
             <tbody>
               {users.map((user)=>{
-                if ((String(user.id) + " " +
-                  String(user.username) + " " +
-                  String(user.firstname) + " " +
-                  String(user.lastname) + " " +
-                  String(user.phone) + " " +
-                  String(user.email) + " " +
-                  String(user.location)).toLowerCase().includes(userSearch)) {
+                if (("id=" + String(user.id) + " " +
+                  "username=" + String(user.username) + " " +
+                  "firstname=" + String(user.firstname) + " " +
+                  "lastname=" + String(user.lastname) + " " +
+                  "phone=" + String(user.phone) + " " +
+                  "email=" + String(user.email) + " " +
+                  "location=" + String(user.location)).toLowerCase().includes(userSearch)) {
                     return (
                       <tr key={user.id}>
                         <td className="user-id">{user.id}</td>
