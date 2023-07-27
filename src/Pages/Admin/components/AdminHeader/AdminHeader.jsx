@@ -36,6 +36,17 @@ const AdminHeader = () => {
     navigate('/Admin/Products')
     setOpen("false")
   }
+
+  const toAdminCoupons = async() => {
+    const coupons_api = api_path + "/api/coupons/"
+    const response = await axios.get(coupons_api)
+    navigate('/Admin/Coupons', {
+      state : {
+        coupons: response.data
+      }
+    })
+    setOpen("false")
+  }
   
   return (
     <header className="admin-header">
@@ -52,7 +63,7 @@ const AdminHeader = () => {
             <li className="menu-item" onClick={toAdminProducts}>
               <h2>Products</h2>
             </li>
-            <li className="menu-item">
+            <li className="menu-item" onClick={toAdminCoupons}>
               <h2>Coupons</h2>
             </li>
             <li className="menu-item">
