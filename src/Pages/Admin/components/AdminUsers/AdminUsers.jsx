@@ -33,7 +33,7 @@ const AdminUsers = () => {
   return (
     <div className="admin-users">
       <div className="container">
-        <h1>USERS</h1>
+        <h1>USERS ({users.length})</h1>
         
         <input type="text" className="search-bar" placeholder="Search ..." value={userSearch} onChange={(e)=>{setUserSearch(e.target.value)}}/>
 

@@ -11,6 +11,9 @@ const OrderHistory = () => {
 
 
   function formatDate(dateString) {
+    if (dateString === null) {
+      return "N/A";
+    }
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0'); // Add leading zero if day is a single digit
     const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if month is a single digit

@@ -226,6 +226,7 @@
       &.open {
         transform: translateY(0);
         transition: transform 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+        // z-index: 12;
       }
     }
 

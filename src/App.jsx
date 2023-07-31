@@ -18,6 +18,7 @@ import AdminUsers from './Pages/Admin/components/AdminUsers/AdminUsers';
 import AdminProducts from './Pages/Admin/components/AdminProducts/AdminProducts';
 import AdminCoupons from './Pages/Admin/components/AdminCoupons/AdminCoupons';
 import AdminOrders from './Pages/Admin/components/AdminOrders/AdminOrders';
+import AdminOrderDetails from './Pages/Admin/components/AdminOrderDetails/AdminOrderDetails';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
             <Route exact path='/Admin/Products' element={<><AdminHeader/><AdminProducts/></>}/>
             <Route exact path='/Admin/Coupons' element={<><AdminHeader/><AdminCoupons/></>}/>
             <Route exact path='/Admin/Orders' element={<><AdminHeader/><AdminOrders/></>}/>
+            <Route exact path='/Admin/OrderDetails' element={<><AdminHeader/><AdminOrderDetails/></>}/>
 
 
           </Routes>

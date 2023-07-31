@@ -15,6 +15,39 @@
       text-transform: none;
     }
   }
+
+  .sort-btns {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 20px;
+    gap: 10px;
+    
+    button {
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+      background-color: rgb(0, 168, 0);
+      color: white;
+      font-size: calc(12px + 0.5vw);
+      width: 100%;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1vw;
+
+      .icon {
+        fill: white;
+        width: 25px;
+        height: 25px;
+      }
+
+      &:hover {
+        background-color: green;
+      }
+    }
+  }
   
   &_products {
     margin-top: 20px;

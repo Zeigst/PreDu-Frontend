@@ -162,7 +162,41 @@
   }
 
   .products {
-    height: calc(100vh - 100px - 0.390625vw);
+    height: calc(120vh - 100px - 0.390625vw);
+
+    .sort-btns {
+      display: flex;
+      flex-wrap: wrap;
+      width: 90%;
+      justify-content: space-evenly;
+      padding: 0 20px;
+      gap: 10px;
+      margin-bottom: 20px;
+      
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(0, 168, 0);
+        color: white;
+        width: 100px;
+        font-size: calc(11px + 0.5vw);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+  
+        .icon {
+          fill: white;
+          width: 20px;
+          height: 20px;
+        }
+        &:hover {
+          background-color: green;
+        }
+      }
+    }
 
     img {
       height: 50px;

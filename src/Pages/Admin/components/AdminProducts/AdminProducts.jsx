@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import {ReactComponent as RefreshIcon } from '../../../../Resources/Icons/refresh.svg'
 import {ReactComponent as EditIcon } from '../../../../Resources/Icons/edit.svg'
 import {ReactComponent as AddIcon } from '../../../../Resources/Icons/add.svg'
+import {ReactComponent as ArrowUpIcon } from '../../../../Resources/Icons/arrow_upward.svg'
+import {ReactComponent as ArrowDownIcon } from '../../../../Resources/Icons/arrow_downward.svg'
+
 import { PreduContext } from "../../../../PreduContext";
 import axios from "axios";
 
@@ -28,7 +31,35 @@ const AdminProducts = () => {
   const [ stock, setStock ] = useState(0)
 
 
+  const sortNameAsc = () => {
+    let products = shop 
+    updateShop(products.slice().sort((a, b) => a.name.localeCompare(b.name)))
+  }
 
+  const sortNameDesc = () => {
+    let products = shop 
+    updateShop(products.slice().sort((a, b) => b.name.localeCompare(a.name)))
+  }
+
+  const sortPriceAsc = () => {
+    let products = shop
+    updateShop(products.slice().sort((a, b) => a.cost_per_unit - b.cost_per_unit));
+  }
+  
+  const sortPriceDesc = () => {
+    let products = shop
+    updateShop(products.slice().sort((a, b) => b.cost_per_unit - a.cost_per_unit));
+  }
+
+  const sortStockAsc = () => {
+    let products = shop
+    updateShop(products.slice().sort((a, b) => a.stock_quantity - b.stock_quantity));
+  }
+  
+  const sortStockDesc = () => {
+    let products = shop
+    updateShop(products.slice().sort((a, b) => b.stock_quantity - a.stock_quantity));
+  }
 
   function selectEditCategory(object) {
     setCurrentSelect(object)
@@ -270,7 +301,7 @@ const AdminProducts = () => {
   return (
     <div className="admin-products">
       <div className="categories">
-        <h1>Categories ({categories.length})</h1>
+        <h1>CATEGORIES ({categories.length})</h1>
 
         <input type="text" className="search-bar" placeholder="Search ..." value={categorySearch} onChange={(e)=>{setCategorySearch(e.target.value)}}/>
       
@@ -296,8 +327,8 @@ const AdminProducts = () => {
                         <td className="center">{category.id}</td>
                         <td className="left">{category.name}</td>
                         <td className="left">{category.description}</td>
-                        <td className="right">{formatDate(category.created_at)}</td>
-                        <td className="right">{formatDate(category.updated_at)}</td>
+                        <td className="center">{formatDate(category.created_at)}</td>
+                        <td className="center">{formatDate(category.updated_at)}</td>
                         <td className="center">
                           <button onClick={()=>{selectEditCategory(category)}}>
                             <EditIcon className="icon"/>
@@ -324,7 +355,7 @@ const AdminProducts = () => {
       <div className="seperator"></div>
 
       <div className="brands">
-        <h1>Brands ({brands.length})</h1>
+        <h1>BRANDS ({brands.length})</h1>
 
         <input type="text" className="search-bar" placeholder="Search ..." value={brandSearch} onChange={(e)=>{setBrandSearch(e.target.value)}}/>
       
@@ -350,8 +381,8 @@ const AdminProducts = () => {
                         <td className="center">{brand.id}</td>
                         <td className="left">{brand.name}</td>
                         <td className="left">{brand.description}</td>
-                        <td className="right">{formatDate(brand.created_at)}</td>
-                        <td className="right">{formatDate(brand.updated_at)}</td>
+                        <td className="center">{formatDate(brand.created_at)}</td>
+                        <td className="center">{formatDate(brand.updated_at)}</td>
                         <td className="center" onClick={()=>{selectEditBrand(brand)}}>
                           <button><EditIcon className="icon"/></button>
                         </td>
@@ -376,10 +407,19 @@ const AdminProducts = () => {
       <div className="seperator"></div>
 
       <div className="products">
-        <h1>Products ({shop.length})</h1>
+        <h1>PRODUCTS ({shop.length})</h1>
 
         <input type="text" className="search-bar" placeholder="Search ..." value={productSearch} onChange={(e)=>{setProductSearch(e.target.value)}}/>
       
+        <div className="sort-btns">
+          <button onClick={sortNameAsc}>Name <ArrowUpIcon className="icon"/></button>
+          <button onClick={sortNameDesc}>Name <ArrowDownIcon className="icon"/></button>
+          <button onClick={sortPriceAsc}>Cost <ArrowUpIcon className="icon"/></button>
+          <button onClick={sortPriceDesc}>Cost <ArrowDownIcon className="icon"/></button>
+          <button onClick={sortStockAsc}>Stock <ArrowUpIcon className="icon"/></button>
+          <button onClick={sortStockDesc}>Stock <ArrowDownIcon className="icon"/></button>
+        </div>
+        
         <div className="table-container">
           <table>
             <thead>

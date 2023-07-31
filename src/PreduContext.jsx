@@ -66,7 +66,9 @@ export const PreduContextProvider = (props) => {
       
       getOrderHistory()
       getUsedCoupons()
+      
     }
+    console.log(products_result)
   }
   
   useEffect(() => {
