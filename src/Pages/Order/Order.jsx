@@ -24,7 +24,7 @@ const Order = () => {
         setOrderSuccessModal(true)
       }
     } catch(e) {
-      window.alert(e.response.data.message)
+      window.alert(e.response.data.detail)
     }
   }
 

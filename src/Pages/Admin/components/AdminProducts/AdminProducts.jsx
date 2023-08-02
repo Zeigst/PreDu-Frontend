@@ -242,6 +242,15 @@ const AdminProducts = () => {
             window.alert(e.response.data.detail)
           }
         }
+        else if (currentType === "product") {
+          const delete_api = api_path + "/api/products/" + String(currentSelect.id)
+          try {
+            const response = await axios.delete(delete_api, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+            window.alert(response.data.message)
+          } catch (e)  {
+            window.alert(e.response.data.detail)
+          }
+        }
       }
     }
 
@@ -601,7 +610,7 @@ const AdminProducts = () => {
 
             <div className="buttons-container">
               <button className="update" onClick={update}>Update</button>
-              <button className="delete" >Delete</button>
+              <button className="delete" onClick={deleteSelected}>Delete</button>
             </div>
           </div>
         </div>

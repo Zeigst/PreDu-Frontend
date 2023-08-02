@@ -46,8 +46,6 @@ function App() {
             <Route exact path='/Admin/Coupons' element={<><AdminHeader/><AdminCoupons/></>}/>
             <Route exact path='/Admin/Orders' element={<><AdminHeader/><AdminOrders/></>}/>
             <Route exact path='/Admin/OrderDetails' element={<><AdminHeader/><AdminOrderDetails/></>}/>
-
-
           </Routes>
         </Router>
       </PreduContextProvider>

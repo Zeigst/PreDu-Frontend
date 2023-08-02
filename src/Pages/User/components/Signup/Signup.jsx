@@ -27,7 +27,7 @@ const Signup = () => {
   const [ location, setLocation ] = useState("")
 
   async function signup() {
-    var signup_api = api_path + "/api/users/signup"
+    var signup_api = api_path + "/api/users/"
     var login_api = api_path + "/api/auth/login"
     var user_api = api_path + "/api/auth/me"
 
@@ -44,22 +44,20 @@ const Signup = () => {
 
     try {
       const signup_response = await axios.post(signup_api, new_user);
-      console.log(signup_response)
       if (signup_response.status === 200) {
         const new_login = {
           username: username,
           password: password
         }
-        
         try {
           const login_response = await axios.post(login_api, new_login);
           Cookies.set('access_token', login_response.data.access_token);
         } catch(e) {
-          console.log(e)
+          window.alert(e.response.data.detail)
         }
       }
     } catch(e) {
-      console.log(e)
+      window.alert(e.response.data.detail)
     }
 
     if(getAccessToken() !== null) {

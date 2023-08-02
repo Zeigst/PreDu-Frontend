@@ -70,7 +70,7 @@ const AdminCoupons = () => {
         is_active: isActive,
         limit_per_user: parseInt(limitPerUser),
       }
-      const response = await axios.patch(update_api, updateCoupon, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+      const response = await axios.put(update_api, updateCoupon, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
       window.alert(response.data.message)
     } catch (e) {
       window.alert(e.response.data.detail)
