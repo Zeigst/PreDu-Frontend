@@ -10,9 +10,12 @@ import Shop from './Pages/Shop/Shop';
 import Cart from './Pages/Cart/Cart';
 import Product from './Pages/Product/Product';
 import User from './Pages/User/User';
-import Admin from './Pages/Admin/Admin';
 import Order from './Pages/Order/Order';
 import OrderDetails from './Pages/OrderDetails/OrderDetails';
+import Help from './Pages/Help/Help';
+import AboutUs from './Pages/AboutUs/AboutUs';
+
+import Admin from './Pages/Admin/Admin';
 import AdminHeader from './Pages/Admin/components/AdminHeader/AdminHeader';
 import AdminUsers from './Pages/Admin/components/AdminUsers/AdminUsers';
 import AdminProducts from './Pages/Admin/components/AdminProducts/AdminProducts';
@@ -34,6 +37,8 @@ function App() {
             <Route exact path='/Order' element={<><Header/><Order/><Footer/><ChatBot/></>}/>
             <Route exact path='/Product' element={<><Header/><Product/><Footer/><ChatBot/></>}/>
             <Route exact path='/OrderDetails' element={<><Header/><OrderDetails/><Footer/><ChatBot/></>}/>
+            <Route exact path='/Help' element={<><Header/><Help/><Footer/><ChatBot/></>}/>
+            <Route exact path='/AboutUs' element={<><Header/><AboutUs/><Footer/><ChatBot/></>}/>
             <Route exact path='/User' element={<><User/></>}/>
             <Route exact path='/Admin' element={<><AdminHeader/><Admin/></>}/>
             <Route exact path='/Admin/Users' element={<><AdminHeader/><AdminUsers/></>}/>

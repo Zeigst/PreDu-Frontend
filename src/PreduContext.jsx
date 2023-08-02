@@ -25,7 +25,7 @@ export const PreduContextProvider = (props) => {
 
     const categories_result = await (await axios.get(api_path + "/api/categories/")).data
     for (let i in categories_result) {
-      let brand_ids = await (await axios.get(api_path + "/api/categories/brands/" + String(categories_result[i]["id"]))).data;
+      let brand_ids = await (await axios.get(api_path + "/api/categories/" + String(categories_result[i]["id"]) + "/brands")).data;
       categories_result[i]["brand_ids"] = brand_ids
       let brands = []
       for (let n in brand_ids) {
@@ -68,7 +68,6 @@ export const PreduContextProvider = (props) => {
       getUsedCoupons()
       
     }
-    console.log(products_result)
   }
   
   useEffect(() => {

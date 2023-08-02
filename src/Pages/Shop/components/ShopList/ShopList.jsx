@@ -1,4 +1,4 @@
-import React, { useContext , useState} from "react"
+import React, { useContext } from "react"
 import { PreduContext } from "../../../../PreduContext"
 import {ReactComponent as ArrowUpIcon } from '../../../../Resources/Icons/arrow_upward.svg'
 import {ReactComponent as ArrowDownIcon } from '../../../../Resources/Icons/arrow_downward.svg'

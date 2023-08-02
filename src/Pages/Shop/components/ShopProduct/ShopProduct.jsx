@@ -58,7 +58,7 @@ const ShopProduct = (props) => {
   
   return (
     <div className="shop-product">
-      <img src={image}></img>
+      <img src={image} alt="product img"></img>
       <div className="product_title">
         <h3>
           <b>{brand}</b>

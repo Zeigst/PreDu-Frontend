@@ -155,6 +155,21 @@
 
           &.center {
             text-align: center;
+            text-transform: uppercase;
+
+            &.processing {
+              color: rgb(255, 170, 0);
+              font-weight: bold;
+            }
+            &.canceled {
+              color: red;
+              font-weight: bold;
+            }
+            &.completed {
+              color: green;
+              font-weight: bold;
+            }
+            
           }
 
           &.right {

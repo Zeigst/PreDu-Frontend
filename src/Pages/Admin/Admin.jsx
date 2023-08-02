@@ -79,7 +79,7 @@ const Admin = () => {
       }
       try {
         const name_api = api_path + "/api/auth/change-username"
-        const response = await axios.post(name_api, usernameUpdated, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+        const response = await axios.patch(name_api, usernameUpdated, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
         Cookies.set('access_token', response.data.access_token, { secure: true, sameSite: 'strict' });
         window.alert(response.data.message)
         const newCurrentUser = currentUser
@@ -101,7 +101,7 @@ const Admin = () => {
     }
     try {
       const password_api = api_path + "/api/auth/change-password"
-      const response = await axios.post(password_api, passwordUpdated, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+      const response = await axios.patch(password_api, passwordUpdated, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
       const newCurrentUser = currentUser
       const masked_password = newPassword.slice(0, -2).replace(/./g, "*") + newPassword.slice(-2);
       newCurrentUser.password = masked_password

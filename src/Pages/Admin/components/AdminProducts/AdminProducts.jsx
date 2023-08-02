@@ -130,7 +130,7 @@ const AdminProducts = () => {
             name: name,
             description: description
           }
-          const response = await axios.patch(update_api, updated_select, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+          const response = await axios.put(update_api, updated_select, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
           window.alert(response.data.message)
         } catch (e)  {
           window.alert(e.response.data.detail)
@@ -143,7 +143,7 @@ const AdminProducts = () => {
             name: name,
             description: description
           }
-          const response = await axios.patch(update_api, updated_select, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+          const response = await axios.put(update_api, updated_select, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
           window.alert(response.data.message)
         } catch (e)  {
           window.alert(e.response.data.detail)
@@ -161,7 +161,7 @@ const AdminProducts = () => {
             cost_per_unit: parseFloat(cost),
             stock_quantity: parseInt(stock)
           }
-          const response = await axios.patch(update_api, updated_select, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
+          const response = await axios.put(update_api, updated_select, {headers: {"Authorization" : `Bearer ${getAccessToken()}`}})
           window.alert(response.data.message)
         } catch (e)  {
           window.alert(e.response.data.detail)
@@ -279,7 +279,7 @@ const AdminProducts = () => {
     const products_refresh = await (await axios.get(api_path + "/api/products/")).data
 
     for (let i in categories_refresh) {
-      let brand_ids = await (await axios.get(api_path + "/api/categories/brands/" + String(categories_refresh[i]["id"]))).data;
+      let brand_ids = await (await axios.get(api_path + "/api/categories/" + String(categories_refresh[i]["id"]) + "/brands")).data;
       categories_refresh[i]["brand_ids"] = brand_ids
       let brands = []
       for (let n in brand_ids) {

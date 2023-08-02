@@ -124,7 +124,7 @@ const OrderDetails = () => {
             </tr>
             <tr>
               <th>Value</th>
-              <td>{order.used_coupon ?  "0 VND" : order.used_coupon.applied_value.toLocaleString("en-US") + " VND"}</td>
+              <td>{order.used_coupon.applied_value ?  order.used_coupon.applied_value.toLocaleString("en-US") : "0"} VND</td>
             </tr>
           </tbody>
         </table>

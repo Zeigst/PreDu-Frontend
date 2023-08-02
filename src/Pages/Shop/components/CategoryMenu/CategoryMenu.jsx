@@ -4,8 +4,6 @@ import { ReactComponent as SearchIcon } from "../../../../Resources/Icons/seacrh
 import { ReactComponent as DropdownIcon } from "../../../../Resources/Icons/arrow_drop_down.svg";
 import { ReactComponent as ArrowCircleRightIcon } from "../../../../Resources/Icons/arrow_circle_right.svg";
 
-import { education_categories, entertainment_categories, office_categories } from "../../../../Data";
-
 const CategoryMenu = () => {
   const { categories, categoryMenuStatus, changeSelectFilter, searchProduct, menuState, setMenuState } = useContext(PreduContext)
   const [ userSearchInput, setUserSearchInput] = useState("")

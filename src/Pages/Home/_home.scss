@@ -1,7 +1,8 @@
 @import './components/HomeMainTitle/home_main_title';
 @import './components/GlassBoxes/glass_boxes';
-@import './components/CardSlider/home_card_swiper';
 @import './components/BannerSwiper/banner_swiper';
+@import './components/HomeMainIcons/home_main_icons';
+@import './components/Selections/selections';
 
 .home {
   display: flex;
@@ -26,12 +27,18 @@
     gap: 2vw;
     padding: 20px;
 
-  &_white {
-    color: white;
+    &_white {
+      color: white;
+    }
+
+    &_orange {
+      color: map-get($map: $template-colors, $key:  "orange");
+    }
   }
 
-  &_orange {
-    color: map-get($map: $template-colors, $key:  "orange");
-  }
+  .chatbot-img {
+    width: min(90vw, 500px);
+    border-radius: 10px;
+    border: 5px solid orange;
   }
 }

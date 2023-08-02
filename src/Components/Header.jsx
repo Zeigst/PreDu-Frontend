@@ -57,6 +57,24 @@ const Header = () => {
     navigate('/User')
   }
 
+  function toHelp() {
+    window.scrollTo(0, 0);
+    setOpen(false)
+    if (categoryMenuStatus === true) {
+      changeCategoryMenuStatus()
+    }
+    navigate('/Help')
+  }
+
+  function toAboutUs() {
+    window.scrollTo(0, 0);
+    setOpen(false)
+    if (categoryMenuStatus === true) {
+      changeCategoryMenuStatus()
+    }
+    navigate('/AboutUs')
+  }
+
   // STICKY SCROLL
   window.addEventListener("scroll", function() {
     var selection = document.querySelector('.header') !== null;
@@ -93,13 +111,10 @@ const Header = () => {
             <li className="menu-item" onClick={toShop}>
               <h2>Shop</h2>
             </li>
-            <li className="menu-item">
-              <h2>News</h2>
-            </li>
-            <li className="menu-item">
+            <li className="menu-item" onClick={toAboutUs}>
               <h2>About Us</h2>
             </li>
-            <li className="menu-item">
+            <li className="menu-item" onClick={toHelp}>
               <h2>Help</h2>
             </li>
           </ul>

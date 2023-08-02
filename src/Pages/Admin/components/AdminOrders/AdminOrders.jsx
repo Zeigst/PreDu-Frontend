@@ -131,7 +131,7 @@ const AdminOrders = () => {
                     return (
                       <tr key={order.id}>
                         <td className="center">{order.id}</td>
-                        <td className="center">{order.status}</td>
+                        <td className={`center ${order.status === "processing" ? "processing" : order.status === "canceled" ? "canceled" : order.status === "completed" ? "completed" : ""}`}>{order.status}</td>
                         <td className="center">{order.user_id}</td>
                         <td className="left">{order.user_firstname} {order.user_lastname}</td>
                         <td className="right">{order.final_total_cost.toLocaleString("en-US")} VND</td>

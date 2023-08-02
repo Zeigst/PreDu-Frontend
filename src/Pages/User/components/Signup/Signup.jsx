@@ -4,9 +4,6 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import Cookies from "js-cookie"
 
-import { ReactComponent as UserIcon } from "../../../../Resources/Icons/person_fill.svg"
-import { ReactComponent as LockIcon } from "../../../../Resources/Icons/lock_fill.svg"
-
 const Signup = () => {
   const { setOnSignupPage, api_path, getAccessToken, setCurrentUser, setAuthenticated, } = useContext(PreduContext)
   const navigate = useNavigate()
@@ -99,11 +96,11 @@ const Signup = () => {
               </tr>
               <tr>
                 <td>
-                  <input type="text" name="signup_firstname" id="signup_firstname" placeholder="Last Name" 
+                  <input type="text" name="signup_firstname" id="signup_firstname" 
                     onChange={(e)=>setFirstname(e.target.value)} value={firstname}/>
                 </td>
                 <td>
-                  <input type="text" name="signup_lastname" id="signup_lastname" placeholder="First Name" 
+                  <input type="text" name="signup_lastname" id="signup_lastname"
                     onChange={(e)=>setLastname(e.target.value)} value={lastname}/>
                 </td>
               </tr>
