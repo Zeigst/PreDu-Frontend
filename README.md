@@ -1,4 +1,4 @@
-# E-Commerce Website with GPT_Powered ChatBot (frontend)
+# E-Commerce Website with GPT-Powered ChatBot (frontend)
 Developed using:
 - ReactJS
 - SCSS
